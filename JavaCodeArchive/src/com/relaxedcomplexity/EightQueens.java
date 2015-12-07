@@ -35,8 +35,8 @@ package com.relaxedcomplexity;
  *     that row or column and removes the need to check each position
  *     in a row or column to determine if positioning a new Queen is
  *     blocked. These arrays may have one of two values:
- *       - Unoccupied: '-'
- *       - Occupied:   'Q'
+ *       - Unoccupied: false
+ *       - Occupied:   true
  * <li>Before a Queen can be placed on the board the following conditions
  *     must be met:
  *       - The positions row must not already contain a Queen (see #2)
@@ -66,6 +66,9 @@ public class EightQueens {
 	private static final int	NCOLS = 8;
 	private static final int	NQUEENS = 8;
 	private static final int	NSOLS = 92;
+	private static final char	UNOCCUPIED = '-';
+	private static final char	OCCUPIED = 'Q';
+	private static final char 	BLOCKED = '_';
 	
 	private static boolean		solutionFound = false;
 	private static int			solutionCount = 0;
@@ -73,6 +76,34 @@ public class EightQueens {
 	private static boolean[]	colOccupied = new boolean[NCOLS];
 	private static char[][]		chessBoard = new char[NROWS][NCOLS];
 	private static String[][]	solutions = new String[NSOLS][NQUEENS];
+	
+	/**
+	 * Initialize Pass
+	 * 
+	 * Initialize the variables prior to the start of each pass to reset them
+	 * from the ending state of the prior pass
+	 */
+	public static void initializePass() {
+		solutionFound = false;
+		for (int i=0; i<NROWS; i++) {
+			rowOccupied[i] = false;
+			colOccupied[i] = false;
+			for (int j=0; j<NCOLS; j++) {
+				chessBoard[i][j] = UNOCCUPIED;
+			}
+		}
+	}
+	
+	/**
+	 * Test to determine if a Queen can be placed at the current position on the
+	 * chess board.
+	 * 
+	 * @param rowPos Row number of the position coordinate to test
+	 * @param colPos Column number of the position coordinate to test
+	 */
+	public static boolean testPosition(int currRow, int currCol) {
+		return false;
+	}
 	
 	/**
 	 * @param args
