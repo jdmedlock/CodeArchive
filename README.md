@@ -8,8 +8,11 @@ My purpose in developing this repository is to:
 
 The programs included in this repository are:
 
-1. **EightQueens.java** - 
+1. **DeviceCntl.java** - In-progress!
+This program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Scrolling up and down adjusts the volume while moving the mouse left and right adjusts the pitch of the sound. Since two discrete "things" must interact this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
+
+2. **EightQueens.java** - 
 This class finds the number ways eight queens can be placed on a chessboard so that no two queens can attack each other. This is a classic problem in both Mathematics and Computer Science that was first posited in the mid-19th century. From a Computer Science standpoint it is interesting since it requires considerable finesse to arrive at an efficient solution and since it demonstrates the power of a recursive solution.
 
-2. **WeatherStats.java** - 
+3. **WeatherStats.java** - 
 WeatherStats demonstrates how to retrieve and parse data from a website using standard Java libraries without resorting to maintaining that data on the local server. In this case weather data from a monitoring station at Lake Pend Oreille in Northeastern Washington is retrieved from a [website](http://lpo.dt.navy.mil) maintained by the U.S. Navy and used to generate basic statistics. 
