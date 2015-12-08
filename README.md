@@ -9,7 +9,7 @@ My purpose in developing this repository is to:
 The programs included in this repository are:
 
 1. **DeviceCntl.java** -
-this program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Scrolling up and down adjusts the volume while moving the mouse left and right adjusts the pitch of the sound. Since two descrete "things" must interact this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
+this program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Scrolling up and down adjusts the volume while moving the mouse left and right adjusts the pitch of the sound. Since two discrete "things" must interact this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
 
 2. **EightQueens.java** - 
 This class finds the number ways eight queens can be placed on a chessboard so that no two queens can attack each other. This is a classic problem in both Mathematics and Computer Science that was first posited in the mid-19th century. From a Computer Science standpoint it is interesting since it requires considerable finesse to arrive at an efficient solution and since it demonstrates the power of a recursive solution.
