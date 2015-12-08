@@ -8,7 +8,7 @@ My purpose in developing this repository is to:
 
 The programs included in this repository are:
 
-1. **DeviceCntl.java** -
+1. **DeviceCntl.java** - In-progress
 this program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Scrolling up and down adjusts the volume while moving the mouse left and right adjusts the pitch of the sound. Since two discrete "things" must interact this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
 
 2. **EightQueens.java** - 
