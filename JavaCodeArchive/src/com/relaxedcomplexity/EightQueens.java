@@ -12,16 +12,6 @@ package com.relaxedcomplexity;
  * problem the attributes of board and the Queen mean that no two 
  * queens may occupy the same row, column, or diagonal.
  * <p>
- * The algorithm I've developed to solve this is to run 64 passes over 
- * the chess board starting at position (1,1) and then walk through 
- * each position and place a Queen only if doing so would not allow the
- * game piece to be captured by a Queen that is already on the board.
- * <p>
- * A pass is considered complete when eight queens have been successfully
- * placed on the chess board or when the last position on the board (8,8)
- * has been examined. If the board contains a solution, i.e. eight queens
- * were successfully placed on it the solution will be printed.
- * <p>
  * Some refinements to make the process more efficient are:
  * <ul>
  * <li>The state of the board is maintained as an 8x8 matrix where
@@ -45,8 +35,8 @@ package com.relaxedcomplexity;
  */
 public class EightQueens {
 
-	private static final int	NROWS = 8;
-	private static final int	NCOLS = 8;
+	private static final int		NROWS = 8;
+	private static final int		NCOLS = 8;
 	private static final boolean	UNOCCUPIED = false;
 	private static final boolean	OCCUPIED = true;
 	
@@ -187,10 +177,6 @@ public class EightQueens {
 	/**
 	 * The main function is the driver for the process of finding solutions
 	 * to the Eight Queens problem. 
-	 * <p>
-	 * For now the task is to only find the first solution. Sometime in the 
-	 * future this will be expanded to find all possible solutions to the 
-	 * problem. 
 	 * 
 	 * @param args An array of parameters to be used by the program. However,
 	 * this are not necessary for this program and are ignored.
