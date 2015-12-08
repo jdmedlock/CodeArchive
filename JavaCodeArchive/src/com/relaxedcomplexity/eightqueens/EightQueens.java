@@ -1,4 +1,4 @@
-package com.relaxedcomplexity;
+package com.relaxedcomplexity.eightqueens;
 
 /**
  * The Eight Queens problem is a classic computer science exercise
@@ -11,6 +11,16 @@ package com.relaxedcomplexity;
  * vertically, or diagonally across the board. With respect to this 
  * problem the attributes of board and the Queen mean that no two 
  * queens may occupy the same row, column, or diagonal.
+ * <p>
+ * The algorithm I've developed to solve this is to run 64 passes over 
+ * the chess board starting at position (1,1) and then walk through 
+ * each position and place a Queen only if doing so would not allow the
+ * <p>
+ * Remember that in the game of chess, queens can move any number
+ * of spaces horizontally, vertically, or diagonally across the 
+ * board. A chess board contains eight rows and eight columns. With 
+ * respect to this problem the attributes of board and the Queen mean
+ * that no two queens may occupy the same row, column, or diagonal.
  * <p>
  * The algorithm I've developed to solve this is to run 64 passes over 
  * the chess board starting at position (1,1) and then walk through 
@@ -29,6 +39,11 @@ package com.relaxedcomplexity;
  *       <ul>
  *       <li>Unoccupied: false
  *       <li>Occupied:   true
+ *       </ul>
+ * <li>Two additional arrays of 8 cells each are maintained which
+ *       <ul>
+ *       <li>Unoccupied: '-'
+ *       <li>Occupied:   'Q'
  *       </ul>
  * <li>Two additional arrays of 8 cells each are maintained which
  *     maintain the state of each row and column of the board. This
@@ -73,8 +88,8 @@ public class EightQueens {
 	/**
 	 * Initialize Board
 	 * 
-	 * Initialize the variables prior to the start of each pass to reset them
-	 * from the ending state of the prior pass
+	 * Initialize the variables prior to the start of each pass to reset
+	 * them from the ending state of the prior pass
 	 */
 	public static void initializeBoard() {
 		for (int r=0; r<NROWS; r++) {
@@ -84,6 +99,13 @@ public class EightQueens {
 		}
 	}
 	
+	/**
+	 * Examine a row to determine if it contains a board position a queen
+	 * can be moved onto.
+	 * 
+	 * @param rowPos The row to start the calculation from
+	 * @return
+	 */
 	public static boolean solveByRow(int rowPos) {
 		if(rowPos >= NROWS) {
 			return true;

@@ -1,4 +1,4 @@
-package com.relaxedcomplexity;
+package com.relaxedcomplexity.weatherstats;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
