@@ -1,5 +1,5 @@
-# JavaCodeArchive
-This repository contains my solutions to interesting and sometimes unique problems using Java. These problems include classic Computer Science algorithms and language-specific exercises I've used to expand my knowledge of the Java language. They also include programs and code snippets I've developed in my career that solve common issues across a variety of applications. All of these range in difficulty from trivial to complex.
+# CodeArchive
+This repository contains my solutions to interesting and sometimes unique problems using Java and other languages. These problems include classic Computer Science algorithms and exercises I've used to expand my knowledge of specific languages. They also include programs and code snippets I've developed in my career that solve common issues across a variety of applications. All of these range in difficulty from trivial to complex.
 
 My purpose in developing this repository is to:
 - Retain and reuse solutions I've developed to common problems.
