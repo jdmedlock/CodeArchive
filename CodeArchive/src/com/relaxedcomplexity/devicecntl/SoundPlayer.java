@@ -67,4 +67,22 @@ public class SoundPlayer {
 	        }
 	    }
     }
+    
+    /**
+     * Lower the speaker volume
+     */
+    public static void lowerVolume() {
+    	FloatControl gainControl = 
+    	    (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+    	gainControl.setValue(-10.0f); 			// Reduce volume by 10 decibels.
+    }
+    
+    /**
+     * Raise the speaker volume
+     */
+    public static void raiseVolume() {
+    	FloatControl gainControl = 
+    	    (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+    	gainControl.setValue(10.0f); 			// Increase volume by 10 decibels.
+    }
 }
