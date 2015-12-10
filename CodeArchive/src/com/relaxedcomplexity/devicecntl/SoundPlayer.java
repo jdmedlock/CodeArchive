@@ -5,7 +5,6 @@ package com.relaxedcomplexity.devicecntl;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
@@ -67,23 +66,5 @@ public class SoundPlayer {
 	            forwardNotBack = true;  
 	        }
 	    }
-    }
-    
-    /**
-     * Lower the speaker volume
-     */
-    public static void lowerVolume() {
-    	FloatControl gainControl = 
-    	    (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
-    	gainControl.setValue(-10.0f); 			// Reduce volume by 10 decibels.
-    }
-    
-    /**
-     * Raise the speaker volume
-     */
-    public static void raiseVolume() {
-    	FloatControl gainControl = 
-    	    (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
-    	gainControl.setValue(10.0f); 			// Increase volume by 10 decibels.
     }
 }
