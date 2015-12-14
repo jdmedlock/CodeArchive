@@ -3,6 +3,8 @@
  */
 package com.relaxedcomplexity.devicecntl;
 
+import java.util.logging.Logger;
+
 /**
  * This program demonstrates how to control devices by controlling the 
  * pitch and volume of a sound on the local computer using the mouse. 
@@ -17,14 +19,36 @@ package com.relaxedcomplexity.devicecntl;
  *
  */
 public class DeviceCntl {
+	
+	private static final Logger	logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+	
+	/**
+	 * Processing cycle plays the sound until the user stops the program
+	 * exit indicator is enabled.
+	 */
+	public static void processCycle() {
+		logger.entering(DeviceCntl.class.getSimpleName(),"processCycle");
+		
+		SoundPlayer soundPlayer = new SoundPlayer();
+		while (soundPlayer.isExit()) {
+			
+		}
+		
+		logger.exiting(DeviceCntl.class.getSimpleName(), null);
+	}
 
 	/**
 	 * @param args An array of parameters to be used by the program. However,
 	 * this are not necessary for this program and are ignored.
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		logger.entering(DeviceCntl.class.getSimpleName(),"main");
+		logger.info("Starting processing...");
+		
+		//processCycle();
+		
+		logger.info("...Program terminating.");
+		logger.exiting(DeviceCntl.class.getSimpleName(), null);
 	}
 
 }

@@ -67,4 +67,9 @@ public class SoundPlayer {
 	        }
 	    }
     }
+
+	public boolean isExit() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

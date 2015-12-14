@@ -46,8 +46,7 @@ public class SineSynth {
     * 
     * @throws LineUnavailableException
     */
-   public static void test() throws LineUnavailableException {
-	   
+   public static void test() throws LineUnavailableException {   
        final AudioFormat af = new AudioFormat(SAMPLE_RATE, 8, 1, true, true);
        SourceDataLine line = AudioSystem.getSourceDataLine(af);
        line.open(af, SAMPLE_RATE);
