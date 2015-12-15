@@ -13,7 +13,7 @@ import javax.sound.sampled.SourceDataLine;
  * 
  * 	http://stackoverflow.com/questions/8632104/sine-wave-sound-generator-in-java?rq=1
  * 
- * @author jim.medlock
+ * @author Jim Medlock
  *
  */
 

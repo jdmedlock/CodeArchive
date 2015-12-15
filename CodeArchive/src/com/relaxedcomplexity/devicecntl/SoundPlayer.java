@@ -14,7 +14,7 @@ import javax.sound.sampled.SourceDataLine;
  * It allows audio output to be created, opened, and closed with only two
  * method calls.
  * 
- * @author jim.medlock
+ * @author Jim Medlock
  *
  */
 public class SoundPlayer {
@@ -68,8 +68,4 @@ public class SoundPlayer {
 	    }
     }
 
-	public boolean isExit() {
-		// TODO Auto-generated method stub
-		return true;
-	}
 }

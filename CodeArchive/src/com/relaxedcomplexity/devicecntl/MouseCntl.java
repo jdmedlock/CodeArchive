@@ -17,7 +17,7 @@ import java.awt.event.MouseWheelListener;
  * respect MouseCntl is a facade for various mouse classes included in the Java API
  * that deal with the mouse.
  * 
- * @author jim.medlock
+ * @author Jim Medlock
  *
  */
 public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheelListener {
@@ -95,6 +95,14 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
 	public void mouseExited(MouseEvent mouseEvt) {
 		// TODO Auto-generated method stub
 
+	}
+
+	/**
+	 * 
+	 * @return boolean True if user has requested program exit
+	 */
+	public boolean isExit() {
+		return exitRequested;
 	}
 
 }
