@@ -23,9 +23,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class DeviceCntl {
 	
-	private static final Logger	logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
-	protected static MouseCntl	mouseCntl;
-	protected static GUICntl	guiCntl;
+	private   static final Logger		logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+	protected static       MouseCntl	mouseCntl;
+	protected static       GUICntl		guiCntl;
 	
 	/**
 	 * Processing cycle plays the sound until the user stops the program
@@ -53,14 +53,14 @@ public class DeviceCntl {
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                guiCntl.displayGUI(mouseCntl);
+            	//guiCntl.initGUI(mouseCntl);
+                guiCntl.displayGUI();
+		
+                SoundPlayer soundPlayer = new SoundPlayer();
+                //while (!mouseCntl.isExit()) {
+                //}
             }
         });
-		
-		SoundPlayer soundPlayer = new SoundPlayer();
-		while (mouseCntl.isExit()) {
-			
-		}
 		
 		logger.exiting(DeviceCntl.class.getSimpleName(), null);
 	}
@@ -75,7 +75,7 @@ public class DeviceCntl {
 		mouseCntl = new MouseCntl();
 		guiCntl = new GUICntl(mouseCntl);
 		
-		//processCycle();
+		processCycle();
 		
 		logger.info("...Program terminating.");
 		logger.exiting(DeviceCntl.class.getSimpleName(), null);
