@@ -1,4 +1,4 @@
-package com.relaxedcomplexity.devicecntl;
+package com.relaxedcomplexity.sounder;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
