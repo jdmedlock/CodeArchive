@@ -11,6 +11,9 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.EmptyStackException;
 import java.util.Stack;
+import java.util.logging.Logger;
+
+import javax.sound.sampled.LineUnavailableException;
 
 /**
  * @author jim.medlock
@@ -18,15 +21,18 @@ import java.util.Stack;
  */
 public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheelListener {
    
-    private static	Stack<MouseEvent>	mousePositions = new Stack<MouseEvent>();
-    public			enum				Direction {
+	private static final Logger				logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+    public  static final SoundPlayer		player = new SoundPlayer();
+    
+	private static		 Stack<MouseEvent>	mousePositions = new Stack<MouseEvent>();
+    public	static		 enum				Direction {
     	UP(1), DOWN(2), LEFT(3), RIGHT(4);
     	
     	Direction(int value) { this.value = value; }
         private final int value;
         public int value() { return value; }
     };    
-    public			Direction			directionOfMovement;	 
+    public	static		 Direction			directionOfMovement;	 
 
     //-------------------------------------------------------------------------
     // Mouse Listener Event Handlers
@@ -69,6 +75,9 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
 		
 		// Save the current mouse position for use next time
 		mousePositions.push(mouseEvt);
+		
+		// Modify the sound based on the mouse movement
+		player.modifySound(directionOfMovement);
 	}
 
 	/* (non-Javadoc)
@@ -78,7 +87,10 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
 	public void mouseClicked(MouseEvent mouseEvt) {
 		Sounder.addToInfoArea("Mouse was clicked");
 		if ((mouseEvt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
-			Sounder.addToInfoArea("...left button");			
+			Sounder.addToInfoArea("...left button");	
+			
+	        // Play the sound
+	        player.toggleSound();
 		}
 	}
 

@@ -15,6 +15,7 @@ import java.awt.event.MouseWheelListener;
 import java.util.Stack;
 import java.util.logging.Logger;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -58,6 +59,7 @@ public class Sounder extends JPanel {
      * 
 	 * @param args An array of parameters to be used by the program. However,
 	 * this are not necessary for this program and are ignored.
+	 * @throws LineUnavailableException 
 	 */
 	public static void main(String[] args) {
 		logger.entering(Sounder.class.getSimpleName(),"main");
@@ -74,9 +76,6 @@ public class Sounder extends JPanel {
             ex.printStackTrace();
         }
 		
-        // Turn off metal's use of bold fonts //
-        //UIManager.put("swing.boldMetal", Boolean.FALSE);
-        
         // Since Swing objects aren't thread-safe we need to schedule a job
         // on the event dispatch thread to create and process events for 
         // this application's GUI.
@@ -85,7 +84,7 @@ public class Sounder extends JPanel {
                 createGUI();
             }
         });
-		
+        
 		logger.exiting(Sounder.class.getSimpleName(), null);
 	}
 
