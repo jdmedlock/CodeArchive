@@ -9,7 +9,7 @@ My purpose in developing this repository is to:
 All programs included in this repository have been developed using the Eclipse IDE. These programs are:
 
 1. **_Sounder.java_** - :exclamation:**In-progress**:exclamation:
-This program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Pressing and releasing the right mouse button starts and stops the sound, scrolling up and down adjusts the volume, and moving the mouse left and right adjusts the pitch of the sound. Since two discrete "things" must interact, namely mouse and sound, this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
+This program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Pressing and releasing the right mouse button starts and stops the sound, moving the mouse up and down adjusts the volume, and moving it left and right adjusts the pitch. Since two discrete "things" must interact, namely mouse and sound, this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
 
 2. **_EightQueens.java_** - 
 This class finds the number ways eight queens can be placed on a chessboard so that no two queens can attack each other. This is a classic problem in both Mathematics and Computer Science that was first posited in the mid-19th century. From a Computer Science standpoint it is interesting since it requires considerable finesse to arrive at an efficient solution and since it demonstrates the power of a recursive solution.
