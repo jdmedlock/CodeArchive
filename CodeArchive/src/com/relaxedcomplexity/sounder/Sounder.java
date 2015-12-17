@@ -39,13 +39,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Sounder extends JPanel 
 	implements MouseListener, MouseMotionListener, MouseWheelListener {
 
-	private static final Logger			logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
-	private static final String 		NEWLINE = System.getProperty("line.separator");
+	private static final Logger				logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+	private static final String 			NEWLINE = System.getProperty("line.separator");
 
-	private static 		 ContentArea	contents = null;
-    private static 		 JTextArea		infoArea = null;
+	private static 		 ContentArea		contents = null;
+    private static 		 JTextArea			infoArea = null;
     
-    private static		 Stack			mousePositions = null;
+    private static		 Stack<MouseEvent>	mousePositions = null;
+    
+    
 
 	/**
 	 * Processing cycle plays the sound until the user stops the program
@@ -152,13 +154,33 @@ public class Sounder extends JPanel
 		addToInfoArea("Mouse was dragged");
 	}
 
-	/* (non-Javadoc)
+	/* Process a mouse move event
+	 * 
+	 * When the user moves the mouse compare its current position to its
+	 * position captured when it was last moved to determine if it was
+	 * moved horizontally (i.e. left,right) or vertically (i.e. up, down).
+	 * 
+	 * It is important to keep in mind that mouse movements may occur across
+	 * two of the four axes. When calculating the direction this is taken
+	 * into account and the movement with the direction with highest delta 
+	 * from the prior position of the mouse is chosen as the current
+	 * direction.
+	 * 
+	 * Prior to exiting one of four class variables will be updated to 
+	 * indicate the direction of movement. Note that direction is mutually
+	 * exclusive so only one direction will be indicated at any point in 
+	 * time.
+	 * 
 	 * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
 	 */
 	@Override
 	public void mouseMoved(MouseEvent mouseEvt) {
 		addToInfoArea("Mouse was moved");
-		MouseEvent mouseLastPos = (MouseEvent)mousePositions.pop();
+		
+		// Determine the current direction
+		MouseEvent mouseLastPos = mousePositions.pop();
+		
+		// Save the current mouse position for use next time
 		mousePositions.push(mouseEvt);
 	}
 
