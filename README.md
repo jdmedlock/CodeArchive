@@ -6,7 +6,7 @@ My purpose in developing this repository is to:
 - Establish a basis for developing similar language-specific archives for new languages I learn.
 - Blatantly show peers and prospective employers what I have done and what my coding style is rather than just describing my capabilities in my resume.
 
-The programs included in this repository are:
+All programs included in this repository have been developed using the Eclipse IDE. These programs are:
 
 1. **_Sounder.java_** - :exclamation:**In-progress**:exclamation:
 This program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Pressing and releasing the right mouse button starts and stops the sound, scrolling up and down adjusts the volume, and moving the mouse left and right adjusts the pitch of the sound. Since two discrete "things" must interact, namely mouse and sound, this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
