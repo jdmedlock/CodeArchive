@@ -21,18 +21,18 @@ import javax.sound.sampled.LineUnavailableException;
  */
 public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheelListener {
    
-	private static final Logger				logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
-    public  static final SoundPlayer		player = new SoundPlayer();
+	private static final Logger logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+	public static final SoundPlayer player = new SoundPlayer();
     
-	private static		 Stack<MouseEvent>	mousePositions = new Stack<MouseEvent>();
-    public	static		 enum				Direction {
+	private static Stack<MouseEvent> mousePositions = new Stack<MouseEvent>();
+	public static enum Direction {
     	UP(1), DOWN(2), LEFT(3), RIGHT(4);
     	
     	Direction(int value) { this.value = value; }
         private final int value;
         public int value() { return value; }
     };    
-    public	static		 Direction			directionOfMovement;	 
+    public static Direction directionOfMovement;	 
 
     //-------------------------------------------------------------------------
     // Mouse Listener Event Handlers

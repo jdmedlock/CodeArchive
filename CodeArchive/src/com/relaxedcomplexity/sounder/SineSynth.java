@@ -24,11 +24,11 @@ import javax.sound.sampled.SourceDataLine;
 
 public class SineSynth {
     
-	private static final 	Logger			logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
-	protected static final	int 			SAMPLE_RATE = 16 * 1024;
+	private static final Logger logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+	protected static final int SAMPLE_RATE = 16 * 1024;
 
-	private static		 	AudioFormat 	af = null;
-    private static 		 	SourceDataLine	line = null;
+	private static AudioFormat 	af = null;
+    private static SourceDataLine	line = null;
     
 	/**
 	 * Generate a sine wave buffer of a given frequency and duration

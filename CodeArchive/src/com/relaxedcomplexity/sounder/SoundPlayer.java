@@ -20,9 +20,9 @@ import com.relaxedcomplexity.sounder.MouseCntl.Direction;
  */
 public class SoundPlayer {
 	
-	private static final Logger				logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+	private static final Logger logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
 
-	private static 		 boolean			soundState = false;
+	private static boolean soundState = false;
 	
 	/**
 	 * 

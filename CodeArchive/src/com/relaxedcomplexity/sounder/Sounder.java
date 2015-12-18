@@ -39,12 +39,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Sounder extends JPanel {
 
-	private static final Logger				logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
-	private static final String 			NEWLINE = System.getProperty("line.separator");
+	private static final Logger logger = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+	private static final String NEWLINE = System.getProperty("line.separator");
 
-	private static 		 ContentArea		contents = null;
-    private static 		 JTextArea			infoArea = null;
-    private static		 MouseCntl			mouseCntl = null;    
+	private static ContentArea contents = null;
+    private static JTextArea infoArea = null;
+    private static MouseCntl mouseCntl = null;    
 
 	/**
      * This program demonstrates how to control devices by controlling the
@@ -110,7 +110,7 @@ public class Sounder extends JPanel {
     }
     
     /**
-     * 
+     * Define the GUI components and attach the event listners
      */
     public Sounder() {
         super(new GridLayout(0,1));
@@ -136,6 +136,11 @@ public class Sounder extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
     }
     
+    /**
+     * Display a message in the information area of the GUI window
+     * 
+     * @param aText Text to include in the message
+     */
     public static void addToInfoArea(String aText) {
     	infoArea.append(aText
                 + "." + NEWLINE);
