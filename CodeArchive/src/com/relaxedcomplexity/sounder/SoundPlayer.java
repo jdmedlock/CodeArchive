@@ -57,30 +57,4 @@ public class SoundPlayer {
     this.soundState = soundState;
   }
  
-  // -------------------------------------------------------------------------
-  // Sound Manipulation Methods
-  // -------------------------------------------------------------------------
-
-  /**
-   * Modify volume/frequency of the sound
-   */
-  public void modifySound(MouseCntl.Direction direction) {
-    // TODO: Finish coding modifySound method
-    switch (direction) {
-      case LEFT:
-        break;
-      case RIGHT:
-        break;
-      case UP:
-        soundState.incrGain();
-        break;
-      case DOWN:
-        soundState.decrGain();
-        break;
-      default:
-        logger.severe("Invalid direction passed to modifySound. direction=" + direction);
-    }
-  }
-
-  
 }

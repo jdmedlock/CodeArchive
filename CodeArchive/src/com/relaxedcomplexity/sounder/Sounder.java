@@ -65,6 +65,7 @@ public class Sounder extends JPanel {
   private static JTextArea    infoArea  = null;
   private static MouseCntl    mouseCntl = null;
   private static SoundState   soundState = null;
+  private static SoundPlayer  player    = null;
 
   /**
    * 
@@ -87,6 +88,11 @@ public class Sounder extends JPanel {
     } catch (ClassNotFoundException ex) {
       ex.printStackTrace();
     }
+    
+    // Instantiate a SoundState object that we'll pass to both the 
+    // MouseCntl and SoundPlayer objects when they are created.
+    soundState = new SoundState();
+    player = new SoundPlayer(soundState);
 
     // Since Swing objects aren't thread-safe we need to schedule a job
     // on the event dispatch thread to create and process events for
@@ -140,10 +146,6 @@ public class Sounder extends JPanel {
     scrollPane.setPreferredSize(new Dimension(200, 75));
     add(scrollPane);
     
-    // Instantiate a SoundState object that we'll pass to both the 
-    // MouseCntl and SoundPlayer objects when they are created.
-    soundState = new SoundState();
-
     // Register for mouse events on blankArea and the panel.
     mouseCntl = new MouseCntl(soundState);
     contents.addMouseListener(mouseCntl);

@@ -26,12 +26,16 @@
 
 package com.relaxedcomplexity.sounder;
 
+import java.util.logging.Logger;
+
 /**
  * @author Jim Medlock
  *
  */
 public class SoundState {
   
+  private static final Logger logger     = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+
   private double       frequency = 0d;
   private double       startingFrequency = 400;
   private double       frequencyDelta = 20;
@@ -40,6 +44,31 @@ public class SoundState {
   private float        gainDelta = 0;
   
   private boolean      soundPlaying = false;
+  
+  // -------------------------------------------------------------------------
+  // Sound Manipulation Methods
+  // -------------------------------------------------------------------------
+
+  /**
+   * Modify volume/frequency of the sound
+   */
+  public void modifySound(MouseCntl.Direction direction) {
+    // TODO: Finish coding modifySound method
+    switch (direction) {
+      case LEFT:
+        break;
+      case RIGHT:
+        break;
+      case UP:
+        incrGain();
+        break;
+      case DOWN:
+        decrGain();
+        break;
+      default:
+        logger.severe("Invalid direction passed to modifySound. direction=" + direction);
+    }
+  }
   
   // -------------------------------------------------------------------------
   // Frequency Methods

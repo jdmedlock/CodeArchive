@@ -45,7 +45,6 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
 
   private static final Logger      logger         = Logger
       .getLogger("com.relaxedcomplexity.devicecntl");
-  public static        SoundPlayer player         = null;
   private              SoundState soundState = null;
   private static Stack<MouseEvent> mousePositions = new Stack<MouseEvent>();
 
@@ -70,7 +69,6 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
    */
   public MouseCntl(SoundState soundState) {
     this.soundState = soundState;
-    player = new SoundPlayer(soundState);
   }
   
   // -------------------------------------------------------------------------
@@ -123,7 +121,7 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
     mousePositions.push(mouseEvt);
 
     // Modify the sound based on the mouse movement
-    player.modifySound(directionOfMovement);
+    //player.modifySound(directionOfMovement);
   }
 
   /*
