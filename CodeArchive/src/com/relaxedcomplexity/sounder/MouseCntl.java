@@ -45,8 +45,8 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
 
   private static final Logger      logger         = Logger
       .getLogger("com.relaxedcomplexity.devicecntl");
-  public static final SoundPlayer  player         = new SoundPlayer();
-
+  public static        SoundPlayer player         = null;
+  private              SoundState soundState = null;
   private static Stack<MouseEvent> mousePositions = new Stack<MouseEvent>();
 
   public static enum Direction {
@@ -65,6 +65,14 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
 
   public static Direction directionOfMovement;
 
+  /**
+   * MouseCntl Constructor
+   */
+  public MouseCntl(SoundState soundState) {
+    this.soundState = soundState;
+    player = new SoundPlayer(soundState);
+  }
+  
   // -------------------------------------------------------------------------
   // Mouse Listener Event Handlers
   // -------------------------------------------------------------------------
@@ -130,7 +138,7 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
       Sounder.addToInfoArea("...left button");
 
       // Play the sound
-      player.toggleSound();
+      soundState.toggleSound();
     }
   }
 

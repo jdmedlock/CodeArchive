@@ -36,16 +36,27 @@ import javax.swing.JLabel;
 public class ContentArea extends JLabel {
   Dimension minSize = new Dimension(100, 50);
 
+  /**
+   * Set background color of background area
+   * 
+   * @param color New background color
+   */
   public ContentArea(Color color) {
     setBackground(color);
     setOpaque(true);
     setBorder(BorderFactory.createLineBorder(Color.black));
   }
 
+  /**
+   * Get the content areas minimum size
+   */
   public Dimension getMinimumSize() {
     return minSize;
   }
 
+  /**
+   * Get the content areas preferred size
+   */
   public Dimension getPreferredSize() {
     return minSize;
   }

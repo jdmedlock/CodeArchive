@@ -42,14 +42,27 @@ import com.relaxedcomplexity.sounder.MouseCntl.Direction;
  * @author Jim Medlock
  *
  */
+//TODO: Run SoundPlayer in its own thread
 public class SoundPlayer {
 
   private static final Logger logger     = Logger.getLogger("com.relaxedcomplexity.devicecntl");
-
-  private static boolean      soundOn = false;
+  private              SoundState soundState = null;
 
   /**
+   * SoundPlayer constructor
    * 
+   * @param soundState SoundState object instance
+   */
+  public SoundPlayer(SoundState soundState) {
+    this.soundState = soundState;
+  }
+ 
+  // -------------------------------------------------------------------------
+  // Sound Manipulation Methods
+  // -------------------------------------------------------------------------
+
+  /**
+   * Modify volume/frequency of the sound
    */
   public void modifySound(MouseCntl.Direction direction) {
     // TODO: Finish coding modifySound method
@@ -59,24 +72,15 @@ public class SoundPlayer {
       case RIGHT:
         break;
       case UP:
+        soundState.incrGain();
         break;
       case DOWN:
+        soundState.decrGain();
         break;
       default:
         logger.severe("Invalid direction passed to modifySound. direction=" + direction);
     }
   }
 
-  /**
-   * Toggle the sound on/off.
-   * 
-   */
-  public void toggleSound() {
-    if (soundOn) {
-      soundOn = false;
-    } else {
-      soundOn = true;
-      SineSynth.playAudio();
-    }
-  }
+  
 }

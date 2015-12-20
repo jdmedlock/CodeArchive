@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
@@ -55,6 +56,18 @@ public class SineSynth {
   private static SourceDataLine line        = null;
 
   /**
+   * Close the audio output line
+   * <p>
+   * The line will be closed only if it is open.
+   */
+  public static void closeAudio() {
+    if (line != null) {
+      line.drain();
+      line.close();
+    }
+  }
+
+  /**
    * Generate a sine wave buffer of a given frequency and duration
    * 
    * @param freq
@@ -64,7 +77,7 @@ public class SineSynth {
    * @return byte array containing the generated sound
    */
 
-  public static byte[] createSineWaveBuffer(double freq, int ms) {
+  private static byte[] createSineWaveBuffer(double freq, int ms) {
     int samples = (int) ((ms * SAMPLE_RATE) / 1000);
     byte[] output = new byte[samples];
     double period = (double) SAMPLE_RATE / freq;
@@ -89,18 +102,6 @@ public class SineSynth {
     line = AudioSystem.getSourceDataLine(af);
     line.open(af, sampleRate);
     line.start();
-  }
-
-  /**
-   * Close the audio output line
-   * <p>
-   * The line will be closed only if it is open.
-   */
-  public static void closeAudio() {
-    if (line != null) {
-      line.drain();
-      line.close();
-    }
   }
 
   /**
@@ -136,6 +137,18 @@ public class SineSynth {
     }
   }
 
+  /**
+   * Set the gain (volume) of the sound
+   * 
+   * @param newGain New volume level
+   */
+  public void setGain(float newGain) {
+    if (line.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+      FloatControl volume = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+     volume.setValue(newGain);
+  }  }
+  
+  
   /**
    * Testing method used to exercise class functionality
    * 

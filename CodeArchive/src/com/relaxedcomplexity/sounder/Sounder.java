@@ -64,6 +64,7 @@ public class Sounder extends JPanel {
   private static ContentArea  contents  = null;
   private static JTextArea    infoArea  = null;
   private static MouseCntl    mouseCntl = null;
+  private static SoundState   soundState = null;
 
   /**
    * 
@@ -92,19 +93,23 @@ public class Sounder extends JPanel {
     // this application's GUI.
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
       public void run() {
-        createGUI();
+        createUI();
       }
     });
 
     logger.exiting(Sounder.class.getSimpleName(), null);
   }
 
+  // -------------------------------------------------------------------------
+  // UI Methods
+  // -------------------------------------------------------------------------
+
   /**
    * Create the user interface the user will interact with to this program. This
    * method must be invoked from the event dispatch thread to ensure thread
    * safety.
    */
-  private static void createGUI() {
+  private static void createUI() {
 
     // Create and set up the window.
     JFrame frame = new JFrame("Device Control");
@@ -121,7 +126,7 @@ public class Sounder extends JPanel {
   }
 
   /**
-   * Define the GUI components and attach the event listners
+   * Define the UI components and attach the event listners
    */
   public Sounder() {
     super(new GridLayout(0, 1));
@@ -134,9 +139,13 @@ public class Sounder extends JPanel {
     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     scrollPane.setPreferredSize(new Dimension(200, 75));
     add(scrollPane);
+    
+    // Instantiate a SoundState object that we'll pass to both the 
+    // MouseCntl and SoundPlayer objects when they are created.
+    soundState = new SoundState();
 
     // Register for mouse events on blankArea and the panel.
-    mouseCntl = new MouseCntl();
+    mouseCntl = new MouseCntl(soundState);
     contents.addMouseListener(mouseCntl);
     addMouseListener(mouseCntl);
     contents.addMouseMotionListener(mouseCntl);
