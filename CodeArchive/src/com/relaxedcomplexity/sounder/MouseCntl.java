@@ -38,13 +38,14 @@ import java.util.Stack;
 import java.util.logging.Logger;
 
 /**
+ * Detect mouse events
+ * 
  * @author Jim Medlock
  *
  */
 public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheelListener {
 
-  private static final Logger      logger         = Logger
-      .getLogger("com.relaxedcomplexity.devicecntl");
+  private static final Logger logger = Logger.getLogger("com.relaxedcomplexity.sounder");
   private              SoundPlayer soundPlayer = null;
   private static Stack<MouseEvent> mousePositions = new Stack<MouseEvent>();
 

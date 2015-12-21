@@ -58,7 +58,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Sounder extends JPanel {
 
-  private static final Logger logger    = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+  private static final Logger logger    = Logger.getLogger("com.relaxedcomplexity.sounder");
   private static final String NEWLINE   = System.getProperty("line.separator");
 
   private static ContentArea  contents  = null;
@@ -131,7 +131,7 @@ public class Sounder extends JPanel {
   }
 
   /**
-   * Define the UI components and attach the event listners
+   * Define the UI components and attach the event listeners
    */
   public Sounder() {
     super(new GridLayout(0, 1));
@@ -159,8 +159,7 @@ public class Sounder extends JPanel {
   /**
    * Display a message in the information area of the GUI window
    * 
-   * @param aText
-   *          Text to include in the message
+   * @param aText Text to include in the message
    */
   public static void addToInfoArea(String aText) {
     infoArea.append(aText + "." + NEWLINE);

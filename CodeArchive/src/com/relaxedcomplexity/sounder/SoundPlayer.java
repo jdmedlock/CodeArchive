@@ -31,12 +31,19 @@ import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 /**
+ * Maintains the state of the sound system and contains methods that allow
+ * the sound to be manipulated by starting and stopping it, as well as changing
+ * volume and frequency.
+ * <p>
+ * SoundPlayer runs on the main thread and facilitates communication between
+ * the mouse event handler and the sound system (MouseCntl and SineSynth).
+ * 
  * @author Jim Medlock
  *
  */
 public class SoundPlayer {
   
-  private static final Logger logger     = Logger.getLogger("com.relaxedcomplexity.devicecntl");
+  private static final Logger logger = Logger.getLogger("com.relaxedcomplexity.sounder");
   private static final ExecutorService executor = Executors.newSingleThreadExecutor();
 
   private double       frequency = 0d;
@@ -54,6 +61,8 @@ public class SoundPlayer {
 
   /**
    * Modify volume/frequency of the sound
+   * 
+   * @param direction Direction enum value
    */
   public void modifySound(MouseCntl.Direction direction) {
     // TODO: Finish coding modifySound method
@@ -100,6 +109,8 @@ public class SoundPlayer {
   /**
    * Set  current frequency value
    * 
+   * @param newFrequency New frequency value
+   * 
    * TODO: Perform editing on inbound newFrequency value
    */
   public void setFrequency(double newFrequency) {
@@ -133,6 +144,8 @@ public class SoundPlayer {
   
   /**
    * Set current gain (volume) level
+   * 
+   * @param newGain New volume level
    * 
    * TODO: Perform editing on inbound newGain value
    */

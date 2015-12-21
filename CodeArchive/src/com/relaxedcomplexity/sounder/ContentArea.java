@@ -31,6 +31,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 /**
+ * Maintain attributes of the content area on the screen
+ * 
  * @author Jim Medlock
  *
  */
@@ -40,8 +42,7 @@ public class ContentArea extends JLabel {
   /**
    * Set background color of background area
    * 
-   * @param color
-   *          New background color
+   * @param color New background color
    */
   public ContentArea(Color color) {
     setBackground(color);

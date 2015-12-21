@@ -34,12 +34,12 @@ import javax.sound.sampled.SourceDataLine;
 
 /**
  * SineSynth simplifies the process of interfacing with the audio system by
- * acting as a facade for the AudioFormat and AudioSystem libraries. It allows
- * audio output to be created, opened, and closed with only two method calls.
- * 
+ * acting as a facade for the AudioFormat and AudioSystem libraries. This 
+ * object must run in its own thread.
+ * <p>
  * The original version of this class was copied from a Stack Overflow post
  * located at:
- * 
+ * <p>
  * http://stackoverflow.com/questions/8632104/sine-wave-sound-generator-in-java?
  * rq=1
  * 
@@ -70,10 +70,8 @@ public class SineSynth {
   /**
    * Generate a sine wave buffer of a given frequency and duration
    * 
-   * @param freq
-   *          Frequency to be used to generate the sound
-   * @param ms
-   *          Duration in milliseconds (ms)
+   * @param freq Frequency to be used to generate the sound
+   * @param ms Duration in milliseconds (ms)
    * @return byte array containing the generated sound
    */
 
@@ -93,8 +91,7 @@ public class SineSynth {
   /**
    * Open a new audio output line
    * 
-   * @param sampleRate
-   *          Sampling rate for the audio
+   * @param sampleRate Sampling rate for the audio
    * @throws LineUnavailableException
    */
   public static void openAudio(int sampleRate) throws LineUnavailableException {
@@ -107,8 +104,7 @@ public class SineSynth {
   /**
    * Play a tone
    * 
-   * @param toneBuffer
-   *          byte array containing the tone to be played
+   * @param toneBuffer byte array containing the tone to be played
    */
   public static void playAudio(SoundPlayer soundPlayer) {
     // Open the audio line if it's not already opened.
