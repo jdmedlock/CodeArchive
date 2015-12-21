@@ -110,7 +110,7 @@ public class SineSynth {
    * @param toneBuffer
    *          byte array containing the tone to be played
    */
-  public static void playAudio() {
+  public static void playAudio(SoundPlayer soundPlayer) {
     // Open the audio line if it's not already opened.
     if (af == null) {
       try {

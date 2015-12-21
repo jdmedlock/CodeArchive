@@ -38,14 +38,14 @@ import java.util.Stack;
 import java.util.logging.Logger;
 
 /**
- * @author jim.medlock
+ * @author Jim Medlock
  *
  */
 public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheelListener {
 
   private static final Logger      logger         = Logger
       .getLogger("com.relaxedcomplexity.devicecntl");
-  private              SoundState soundState = null;
+  private              SoundPlayer soundPlayer = null;
   private static Stack<MouseEvent> mousePositions = new Stack<MouseEvent>();
 
   public static enum Direction {
@@ -67,8 +67,8 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
   /**
    * MouseCntl Constructor
    */
-  public MouseCntl(SoundState soundState) {
-    this.soundState = soundState;
+  public MouseCntl(SoundPlayer soundPlayer) {
+    this.soundPlayer = soundPlayer;
   }
   
   // -------------------------------------------------------------------------
@@ -136,7 +136,7 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
       Sounder.addToInfoArea("...left button");
 
       // Play the sound
-      soundState.toggleSound();
+      soundPlayer.toggleSound();
     }
   }
 

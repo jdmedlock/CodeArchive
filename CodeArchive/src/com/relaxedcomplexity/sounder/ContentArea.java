@@ -1,14 +1,3 @@
-/**
- * 
- */
-package com.relaxedcomplexity.sounder;
-
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-
 /*******************************************************************************
  * The MIT License (MIT)
  *
@@ -21,8 +10,8 @@ import javax.swing.JLabel;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -33,13 +22,26 @@ import javax.swing.JLabel;
  * SOFTWARE.
  *
  *******************************************************************************/
+package com.relaxedcomplexity.sounder;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+
+/**
+ * @author Jim Medlock
+ *
+ */
 public class ContentArea extends JLabel {
   Dimension minSize = new Dimension(100, 50);
 
   /**
    * Set background color of background area
    * 
-   * @param color New background color
+   * @param color
+   *          New background color
    */
   public ContentArea(Color color) {
     setBackground(color);
