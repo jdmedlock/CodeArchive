@@ -51,16 +51,34 @@ public class SineSynth {
 
   private static final Logger   logger      = Logger.getLogger("com.relaxedcomplexity.devicecntl");
   protected static final int    SAMPLE_RATE = 16 * 1024;
+  private SoundPlayer           soundPlayer = null;
 
   private static AudioFormat    af          = null;
   private static SourceDataLine line        = null;
+  
+  /**
+   * Constructor
+   * 
+   * @param soundPlayer Reference to owning SoundPlayer object instance
+   */
+  public SineSynth(SoundPlayer mySoundPlayer) {
+    if (mySoundPlayer != null) {
+      soundPlayer = mySoundPlayer;
+    } else {
+      logger.severe("Null SoundPlayer reference passed to constructor");
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Sound Generation Methods
+  // -------------------------------------------------------------------------
 
   /**
    * Close the audio output line
    * <p>
    * The line will be closed only if it is open.
    */
-  public static void closeAudio() {
+  public void closeAudio() {
     if (line != null) {
       line.drain();
       line.close();
@@ -75,7 +93,7 @@ public class SineSynth {
    * @return byte array containing the generated sound
    */
 
-  private static byte[] createSineWaveBuffer(double freq, int ms) {
+  private byte[] createSineWaveBuffer(double freq, int ms) {
     int samples = (int) ((ms * SAMPLE_RATE) / 1000);
     byte[] output = new byte[samples];
     double period = (double) SAMPLE_RATE / freq;
@@ -94,7 +112,7 @@ public class SineSynth {
    * @param sampleRate Sampling rate for the audio
    * @throws LineUnavailableException
    */
-  public static void openAudio(int sampleRate) throws LineUnavailableException {
+  public void openAudio(int sampleRate) throws LineUnavailableException {
     af = new AudioFormat(sampleRate, 8, 1, true, true);
     line = AudioSystem.getSourceDataLine(af);
     line.open(af, sampleRate);
@@ -106,7 +124,7 @@ public class SineSynth {
    * 
    * @param toneBuffer byte array containing the tone to be played
    */
-  public static void playAudio(SoundPlayer soundPlayer) {
+  public void playAudio(SoundPlayer soundPlayer) {
     // Open the audio line if it's not already opened.
     if (af == null) {
       try {
@@ -119,8 +137,8 @@ public class SineSynth {
 
     // Create and play a sound buffer
     boolean forwardNotBack = true;
-    for (double freq = 400; freq <= 800;) {
-      byte[] toneBuffer = SineSynth.createSineWaveBuffer(freq, 50);
+    for (double freq = soundPlayer.getPitch(); freq <= soundPlayer.getPitch()*2;) {
+      byte[] toneBuffer = createSineWaveBuffer(freq, 50);
       int count = line.write(toneBuffer, 0, toneBuffer.length);
 
       if (forwardNotBack) {
@@ -134,14 +152,14 @@ public class SineSynth {
   }
 
   /**
-   * Set the gain (volume) of the sound
+   * Set the volume (gain) of the sound
    * 
-   * @param newGain New volume level
+   * @param newVolume New volume level
    */
-  public void setGain(float newGain) {
+  public void adjustVolume(float newVolume) {
     if (line.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
       FloatControl volume = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
-     volume.setValue(newGain);
+     volume.setValue(newVolume);
   }  }
   
   
@@ -150,7 +168,7 @@ public class SineSynth {
    * 
    * @throws LineUnavailableException
    */
-  public static void test() throws LineUnavailableException {
+  public void test() throws LineUnavailableException {
     final AudioFormat af = new AudioFormat(SAMPLE_RATE, 8, 1, true, true);
     SourceDataLine line = AudioSystem.getSourceDataLine(af);
     line.open(af, SAMPLE_RATE);

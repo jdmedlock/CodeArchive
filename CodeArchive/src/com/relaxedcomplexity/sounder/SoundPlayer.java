@@ -28,12 +28,13 @@ package com.relaxedcomplexity.sounder;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Logger;
 
 /**
  * Maintains the state of the sound system and contains methods that allow
  * the sound to be manipulated by starting and stopping it, as well as changing
- * volume and frequency.
+ * volume and pitch.
  * <p>
  * SoundPlayer runs on the main thread and facilitates communication between
  * the mouse event handler and the sound system (MouseCntl and SineSynth).
@@ -45,22 +46,31 @@ public class SoundPlayer {
   
   private static final Logger logger = Logger.getLogger("com.relaxedcomplexity.sounder");
   private static final ExecutorService executor = Executors.newSingleThreadExecutor();
+  private ReentrantLock lock = new ReentrantLock();
+  private static SineSynth sineSynth = null;
 
-  private double       frequency = 0d;
-  private double       startingFrequency = 400;
-  private double       frequencyDelta = 20;
+  private double       pitch = 0d;
+  private double       startingPitch = 400;
+  private double       pitchDelta = 20;
   
-  private float        gain = 0f;
-  private float        gainDelta = 0;
+  private float        volume = 0f;
+  private float        startingVolume = 0.5f;
+  private float        volumeDelta = .05f;
   
   private boolean      soundPlaying = false;
+  
+  public SoundPlayer() {
+    sineSynth = new SineSynth(this);
+    pitch = startingPitch;
+    volume = startingVolume;
+  }
   
   // -------------------------------------------------------------------------
   // Sound Manipulation Methods
   // -------------------------------------------------------------------------
 
   /**
-   * Modify volume/frequency of the sound
+   * Modify volume/pitch of the sound
    * 
    * @param direction Direction enum value
    */
@@ -68,14 +78,16 @@ public class SoundPlayer {
     // TODO: Finish coding modifySound method
     switch (direction) {
       case LEFT:
+        decrPitch();
         break;
       case RIGHT:
+        incrPitch();
         break;
       case UP:
-        incrGain();
+        incrVolume();
         break;
       case DOWN:
-        decrGain();
+        decrVolume();
         break;
       default:
         logger.severe("Invalid direction passed to modifySound. direction=" + direction);
@@ -83,74 +95,107 @@ public class SoundPlayer {
   }
   
   // -------------------------------------------------------------------------
-  // Frequency Methods
+  // Pitch Methods
   // -------------------------------------------------------------------------
 
   /**
-   * Decrement the frequency 
+   * Decrement the pitch 
    */
-  public void decrFrequency() {
-    frequency -= frequencyDelta;
+  public void decrPitch() {
+    lock.lock();
+    try {
+      pitch -= pitchDelta;
+    } finally {
+        lock.unlock();
+    }
   }
   /**
-   * Get current frequency value
+   * Get current pitch value
    */
-  public double getFrequency() {
-    return frequency;
-  }
-  
-  /**
-   * Increment the frequency 
-   */
-  public void incrFrequency() {
-    frequency += frequencyDelta;
+  public double getPitch() {
+    return pitch;
   }
   
   /**
-   * Set  current frequency value
+   * Increment the pitch 
+   */
+  public void incrPitch() {
+    lock.lock();
+    try {
+      pitch += pitchDelta;
+    } finally {
+        lock.unlock();
+    }
+  }
+  
+  /**
+   * Set  current pitch value
    * 
-   * @param newFrequency New frequency value
+   * @param newPitch New pitch value
    * 
    * TODO: Perform editing on inbound newFrequency value
    */
-  public void setFrequency(double newFrequency) {
-    this.frequency = newFrequency;
+  public void setPitch(double newPitch) {
+    lock.lock();
+    try {
+      pitch = newPitch;
+    } finally {
+      lock.unlock();
+    }
   }
  
   // -------------------------------------------------------------------------
-  // Gain Methods (volume)
+  // Volume Methods (gain)
   // -------------------------------------------------------------------------
 
   /**
-   * Decrement the gain (volume) level
+   * Decrement the volume level
    */
-  public void decrGain() {
-    gain -= gainDelta;
+  public void decrVolume() {
+    lock.lock();
+    try {
+      volume -= volumeDelta;
+    } finally {
+      lock.unlock();
+    }
+    sineSynth.adjustVolume(getVolume());
   }
   
  /**
-   * Get current gain (volume) level
+   * Get current volume level
    */
-  public float getGain() {
-    return gain;
+  public float getVolume() {
+    return volume;
   }
   
   /**
-   * Increment the gain (volume) level
+   * Increment the volume level
    */
-  public void incrGain() {
-    gain += gainDelta;
+  public void incrVolume() {
+    lock.lock();
+    try {
+      volume += volumeDelta;
+    } finally {
+      lock.unlock();
+    }
+    sineSynth.adjustVolume(getVolume());
   }
   
   /**
-   * Set current gain (volume) level
+   * Set current volume level
    * 
-   * @param newGain New volume level
+   * @param newVolume New volume level
    * 
    * TODO: Perform editing on inbound newGain value
    */
-  public void setGain(float newGain) {
-    this.gain = newGain;
+  public void setVolume(float newVolume) {
+    lock.lock();
+    try {
+      volume = newVolume;
+    } finally {
+      lock.unlock();
+    }
+    sineSynth.adjustVolume(getVolume());
   }
  
   // -------------------------------------------------------------------------
@@ -165,6 +210,20 @@ public class SoundPlayer {
   }
   
   /**
+   * Set the sound indicator on/off
+   * 
+   * @param soundIndicator boolean indicating if sound is on or off
+   */
+  public void setSoundPlaying(boolean soundIndicator) {
+    lock.lock();
+    try {
+      soundPlaying = soundIndicator;
+    } finally {
+      lock.unlock();
+    }
+  }
+  
+  /**
    * Toggle sound on/off.
    * 
    * Since playing sound is an operation that's concurrent with event 
@@ -172,12 +231,14 @@ public class SoundPlayer {
    * 
    */
   public void toggleSound() {
-    if (soundPlaying) {
-      soundPlaying = false;
+    if (isSoundPlaying()) {
+      setSoundPlaying(false);
     } else {
-      soundPlaying = true;
+      setSoundPlaying(true);
       executor.submit(() -> {
-        SineSynth.playAudio(this);
+        while (isSoundPlaying()) {
+          sineSynth.playAudio(this);
+        }
       });
      }
   }

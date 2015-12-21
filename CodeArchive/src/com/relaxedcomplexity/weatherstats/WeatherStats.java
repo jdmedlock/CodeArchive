@@ -179,7 +179,7 @@ public class WeatherStats {
 	}
 	
 	/**
-	 * Calculate the mean and median of each 
+	 * Calculate the mean and median of each observation
 	 */
 	public static void calculateStats() {
 		int midPoint = 0;
