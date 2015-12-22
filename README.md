@@ -4,11 +4,11 @@ This repository contains my solutions to interesting and sometimes unique proble
 My purpose in developing this repository is to:
 - Retain and reuse solutions I've developed to common problems.
 - Establish a basis for developing similar language-specific archives for new languages I learn.
-- Blatantly show peers and prospective employers what I have done and what my coding style is rather than just describing my capabilities in my resume.
+- Blatantly demonstrate my coding style to peers and prospective employers rather than just describing my capabilities in my resume.
 
 All programs included in this repository have been developed using the Eclipse IDE. These programs are:
 
-1. **_Sounder.java_** - :exclamation:**In-progress**:exclamation:
+1. **_Sounder.java_** - 
 This program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Pressing and releasing the right mouse button starts and stops the sound, moving the mouse up and down adjusts the volume, and moving it left and right adjusts the pitch. Since two discrete "things" must interact, namely mouse and sound, this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
 
 2. **_EightQueens.java_** - 
