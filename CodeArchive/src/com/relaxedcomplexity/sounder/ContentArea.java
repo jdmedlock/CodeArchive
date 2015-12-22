@@ -45,6 +45,12 @@ public class ContentArea extends JLabel {
    * @param color New background color
    */
   public ContentArea(Color color) {
+    // Test precondition
+    if (color == null) {
+      throw new IllegalArgumentException("Null color passed.");
+    }
+    
+    // Set the background color
     setBackground(color);
     setOpaque(true);
     setBorder(BorderFactory.createLineBorder(Color.black));

@@ -69,6 +69,12 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
    * MouseCntl Constructor
    */
   public MouseCntl(SoundPlayer soundPlayer) {
+    // Test precondition
+    if (soundPlayer == null) {
+      throw new IllegalArgumentException("Null soundPlayer passed.");
+    }
+    
+    // Initialize this object
     this.soundPlayer = soundPlayer;
   }
   
@@ -101,6 +107,9 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
   /*
    * Process a mouse move event
    * 
+   * When the mouse is moved identify its primary direction of movement
+   * and inform the SoundPlayer object so it can adjust the volume or pitch.
+   * 
    * @see
    * java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
    */
@@ -111,18 +120,22 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
     // Determine the current direction
     try {
       MouseEvent mouseLastPos = mousePositions.pop();
-      determineDirection(mouseEvt, mouseLastPos);
+      directionOfMovement = determineDirection(mouseEvt, mouseLastPos);
       Sounder.addToInfoArea("...moved " + directionOfMovement);
+     
+      // Modify the sound based on the mouse movement
+      soundPlayer.modifySound(directionOfMovement);
     } catch (EmptyStackException ese) {
       // Catch the case of the first mouse movement where
       // there is nothing on the stack. Do nothing.
+    } catch (NullPointerException npe) {
+      logger.severe("NullPointerException encountered in mouseMoved");
+      logger.severe(npe.getMessage());
+      npe.printStackTrace();
+    } finally {
+      // Save the current mouse position for use next time
+      mousePositions.push(mouseEvt);
     }
-
-    // Save the current mouse position for use next time
-    mousePositions.push(mouseEvt);
-
-    // Modify the sound based on the mouse movement
-    //player.modifySound(directionOfMovement);
   }
 
   /*
@@ -132,9 +145,8 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
    */
   @Override
   public void mouseClicked(MouseEvent mouseEvt) {
-    Sounder.addToInfoArea("Mouse was clicked");
     if ((mouseEvt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
-      Sounder.addToInfoArea("...left button");
+      Sounder.addToInfoArea("Mouse left button was clicked.");
 
       // Play the sound
       soundPlayer.toggleSound();
@@ -212,6 +224,15 @@ public class MouseCntl implements MouseListener, MouseMotionListener, MouseWheel
    * @return Code indicating the direction of movement
    */
   private Direction determineDirection(MouseEvent currentPos, MouseEvent priorPos) {
+    // Test preconditions
+    if (currentPos == null) {
+      throw new IllegalArgumentException("Null currentPos passed.");
+    }
+    if (priorPos == null) {
+      throw new IllegalArgumentException("Null priorPos passed.");
+    }
+    
+    // Determine dominant direction of mouse movement
     int deltaX = priorPos.getX() - currentPos.getX();
     int deltaY = priorPos.getY() - currentPos.getY();
 

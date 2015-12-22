@@ -68,6 +68,7 @@ public class Sounder extends JPanel {
   private static SoundPlayer  player    = null;
 
   /**
+   * Main program entrypoint
    * 
    * @param args
    *          An array of parameters to be used by the program. However, this
@@ -80,12 +81,20 @@ public class Sounder extends JPanel {
     try {
       UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
     } catch (UnsupportedLookAndFeelException ex) {
+      logger.severe("UnsupportedLookAndFeelException encountered.");
+      logger.severe(ex.getMessage());
       ex.printStackTrace();
     } catch (IllegalAccessException ex) {
+      logger.severe("IllegalAccessException encountered.");
+      logger.severe(ex.getMessage());
       ex.printStackTrace();
     } catch (InstantiationException ex) {
+      logger.severe("InstantiationException encountered.");
+      logger.severe(ex.getMessage());
       ex.printStackTrace();
     } catch (ClassNotFoundException ex) {
+      logger.severe("ClassNotFoundException encountered.");
+      logger.severe(ex.getMessage());
       ex.printStackTrace();
     }
     

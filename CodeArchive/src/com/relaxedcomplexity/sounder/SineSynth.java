@@ -51,24 +51,10 @@ public class SineSynth {
 
   private static final Logger   logger      = Logger.getLogger("com.relaxedcomplexity.devicecntl");
   protected static final int    SAMPLE_RATE = 16 * 1024;
-  private SoundPlayer           soundPlayer = null;
 
   private static AudioFormat    af          = null;
   private static SourceDataLine line        = null;
   
-  /**
-   * Constructor
-   * 
-   * @param soundPlayer Reference to owning SoundPlayer object instance
-   */
-  public SineSynth(SoundPlayer mySoundPlayer) {
-    if (mySoundPlayer != null) {
-      soundPlayer = mySoundPlayer;
-    } else {
-      logger.severe("Null SoundPlayer reference passed to constructor");
-    }
-  }
-
   // -------------------------------------------------------------------------
   // Sound Generation Methods
   // -------------------------------------------------------------------------
@@ -94,6 +80,15 @@ public class SineSynth {
    */
 
   private byte[] createSineWaveBuffer(double freq, int ms) {
+    // Test preconditions
+    if (freq < SoundPlayer.STARTINGPITCH || freq > SoundPlayer.ENDINGPITCH) {
+      throw new IllegalArgumentException("Invalid freq of "+freq+" passed.");
+    }
+    if (ms <= 0) {
+      throw new IllegalArgumentException("Invalid ms of "+ms+" passed.");
+    }
+
+    // Create the sound
     int samples = (int) ((ms * SAMPLE_RATE) / 1000);
     byte[] output = new byte[samples];
     double period = (double) SAMPLE_RATE / freq;
@@ -113,6 +108,12 @@ public class SineSynth {
    * @throws LineUnavailableException
    */
   public void openAudio(int sampleRate) throws LineUnavailableException {
+    // Test preconditions
+    if (sampleRate <= 0) {
+      throw new IllegalArgumentException("Invalid sampleRate of "+sampleRate+" passed.");
+    }
+
+    // Open an audio channel
     af = new AudioFormat(sampleRate, 8, 1, true, true);
     line = AudioSystem.getSourceDataLine(af);
     line.open(af, sampleRate);
@@ -122,22 +123,28 @@ public class SineSynth {
   /**
    * Play a tone
    * 
-   * @param toneBuffer byte array containing the tone to be played
+   * @param soundPlayer Reference to SoundPlayer object
    */
   public void playAudio(SoundPlayer soundPlayer) {
+    // Test preconditions
+    if (soundPlayer == null) {
+      throw new IllegalArgumentException("Null soundPlayer passed.");
+    }
+
     // Open the audio line if it's not already opened.
     if (af == null) {
       try {
         openAudio(SineSynth.SAMPLE_RATE);
-      } catch (LineUnavailableException e) {
+      } catch (LineUnavailableException lue) {
         logger.severe("LineUnavailableException error encountered");
-        e.printStackTrace();
+        logger.severe(lue.getMessage());
+        lue.printStackTrace();
       }
     }
 
     // Create and play a sound buffer
     boolean forwardNotBack = true;
-    for (double freq = soundPlayer.getPitch(); freq <= soundPlayer.getPitch()*2;) {
+    for (double freq = SoundPlayer.STARTINGPITCH; freq <= SoundPlayer.ENDINGPITCH;) {
       byte[] toneBuffer = createSineWaveBuffer(freq, 50);
       int count = line.write(toneBuffer, 0, toneBuffer.length);
 
@@ -157,12 +164,24 @@ public class SineSynth {
    * @param newVolume New volume level
    */
   public void adjustVolume(float newVolume) {
-    if (line.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
-      FloatControl volume = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
-     volume.setValue(newVolume);
-  }  }
+    // Test preconditions
+    if (newVolume < 0 || newVolume > SoundPlayer.ENDINGVOLUME) {
+      throw new IllegalArgumentException("newVolume not in range 0.0-1.0");
+    }
+    
+    // Adjust the volume
+    if (line !=null) {
+      if (line.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+        FloatControl volume = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+        volume.setValue(newVolume);
+      }
+    }
+  }
   
-  
+  // -------------------------------------------------------------------------
+  // Testing Methods
+  // -------------------------------------------------------------------------
+
   /**
    * Testing method used to exercise class functionality
    * 
@@ -175,7 +194,7 @@ public class SineSynth {
     line.start();
 
     boolean forwardNotBack = true;
-    for (double freq = 400; freq <= 800;) {
+    for (double freq = SoundPlayer.STARTINGPITCH; freq <= SoundPlayer.ENDINGPITCH;) {
       byte[] toneBuffer = createSineWaveBuffer(freq, 50);
       int count = line.write(toneBuffer, 0, toneBuffer.length);
 

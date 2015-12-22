@@ -49,20 +49,22 @@ public class SoundPlayer {
   private ReentrantLock lock = new ReentrantLock();
   private static SineSynth sineSynth = null;
 
-  private double       pitch = 0d;
-  private double       startingPitch = 400;
-  private double       pitchDelta = 20;
+  private double              pitch = 0d;
+  public static final double  STARTINGPITCH = 400;
+  public static final double  ENDINGPITCH = 800;
+  public static final double  PITCHDELTA = 20;
   
-  private float        volume = 0f;
-  private float        startingVolume = 0.5f;
-  private float        volumeDelta = .05f;
+  private float               volume = 0f;
+  public static final float   STARTINGVOLUME = 0.5f;
+  public static final float   ENDINGVOLUME = 1.0f;
+  public static final float   VOLUMEDELTA = 0.1f;
   
-  private boolean      soundPlaying = false;
+  private boolean             soundPlaying = false;
   
   public SoundPlayer() {
-    sineSynth = new SineSynth(this);
-    pitch = startingPitch;
-    volume = startingVolume;
+    pitch = STARTINGPITCH;
+    volume = STARTINGVOLUME;
+    sineSynth = new SineSynth();
   }
   
   // -------------------------------------------------------------------------
@@ -75,7 +77,8 @@ public class SoundPlayer {
    * @param direction Direction enum value
    */
   public void modifySound(MouseCntl.Direction direction) {
-    // TODO: Finish coding modifySound method
+    logger.entering(SoundPlayer.class.getSimpleName(), "modifySound");
+
     switch (direction) {
       case LEFT:
         decrPitch();
@@ -92,6 +95,8 @@ public class SoundPlayer {
       default:
         logger.severe("Invalid direction passed to modifySound. direction=" + direction);
     }
+    
+    logger.exiting(SoundPlayer.class.getSimpleName(), null);
   }
   
   // -------------------------------------------------------------------------
@@ -104,9 +109,9 @@ public class SoundPlayer {
   public void decrPitch() {
     lock.lock();
     try {
-      pitch -= pitchDelta;
+      pitch -= PITCHDELTA;
     } finally {
-        lock.unlock();
+      lock.unlock();
     }
   }
   /**
@@ -122,20 +127,26 @@ public class SoundPlayer {
   public void incrPitch() {
     lock.lock();
     try {
-      pitch += pitchDelta;
+      pitch += PITCHDELTA;
     } finally {
-        lock.unlock();
+      lock.unlock();
     }
   }
   
   /**
-   * Set  current pitch value
+   * Set current pitch value
    * 
    * @param newPitch New pitch value
    * 
    * TODO: Perform editing on inbound newFrequency value
    */
   public void setPitch(double newPitch) {
+    // Test preconditions
+    if (newPitch <= 0) {
+      throw new IllegalArgumentException("Invalid newPitch of "+newPitch+" passed.");
+    }
+    
+    // Set the pitch
     lock.lock();
     try {
       pitch = newPitch;
@@ -154,7 +165,10 @@ public class SoundPlayer {
   public void decrVolume() {
     lock.lock();
     try {
-      volume -= volumeDelta;
+      volume -= VOLUMEDELTA;
+      if (volume < STARTINGVOLUME) {
+        volume = STARTINGVOLUME;
+      }
     } finally {
       lock.unlock();
     }
@@ -174,7 +188,10 @@ public class SoundPlayer {
   public void incrVolume() {
     lock.lock();
     try {
-      volume += volumeDelta;
+      volume += VOLUMEDELTA;
+      if (volume > 1.0f) {
+        volume = 1.0f;
+      }
     } finally {
       lock.unlock();
     }
@@ -189,6 +206,12 @@ public class SoundPlayer {
    * TODO: Perform editing on inbound newGain value
    */
   public void setVolume(float newVolume) {
+    // Test preconditions
+    if (newVolume < 0.0f || newVolume > ENDINGVOLUME) {
+      throw new IllegalArgumentException("newVolume not in range 0.0-1.0");
+    }
+    
+    // Set the volume level
     lock.lock();
     try {
       volume = newVolume;
