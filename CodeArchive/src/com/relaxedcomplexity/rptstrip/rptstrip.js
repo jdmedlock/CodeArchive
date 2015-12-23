@@ -194,10 +194,7 @@ var logger = new Console(output, errorOutput);
 // column headers, and page footers.
 var template = Object.create(FileDef);
 template.contents = Object.create(Patterns);
-//template.setFileName('/Users/jdmedlock_alt/Dropbox/Development/JSDev/AtomProjects/AV010_Template.txt');
-//template.setFileName('C:\\Users\\goett\\Documents\\Development\\AV010_Template.txt');
-//template.setFileName('C:\\Users\\goett\\Documents\\Development\\PD525_Template.txt');
-template.setFileName('C:\\Users\\goett\\Documents\\Development\\PO471_Template.txt');
+template.setFileName('path to report template file goes here');
 template.verifyFileExists();
 
 var source = fs.createReadStream(template.fileName);
@@ -221,16 +218,10 @@ template.fileTransform
 // Main Processing
 //------------------------------------------------------------------------------
 var report = Object.create(FileDef);
-//report.setFileName('/Users/jdmedlock_alt/Dropbox/Development/JSDev/AtomProjects/AV010_Report.txt');
-//report.setFileName('C:\\Users\\goett\\Documents\\Development\\AV010_Report.txt');
-//report.setFileName('C:\\Users\\goett\\Documents\\Development\\PD525_Report.txt',{highWaterMark: 32});
-report.setFileName('C:\\Users\\goett\\Documents\\Development\\PO471_Report.txt',{highWaterMark: 32});
+report.setFileName('path to report file to process goes here',{highWaterMark: 32});
 report.verifyFileExists();
 
-//var newReport = fs.createWriteStream('/Users/jdmedlock_alt/Dropbox/Development/JSDev/AtomProjects/AV010_NewReport.txt');
-//var newReport = fs.createWriteStream('C:\\Users\\goett\\Documents\\Development\\AV010_NewReport.txt');
-//var newReport = fs.createWriteStream('C:\\Users\\goett\\Documents\\Development\\PD525_NewReport.txt', {highWaterMark: 32});
-var newReport = fs.createWriteStream('C:\\Users\\goett\\Documents\\Development\\PO471_NewReport.txt', {highWaterMark: 32});
+var newReport = fs.createWriteStream('path to transformed report file goes here', {highWaterMark: 32});
 
 // Read the lines of the template file, save lines and their attributes to template.lines,
 // and calculate a hash for each line in the file.
@@ -240,7 +231,7 @@ report.fileTransform._transform = report._transform;
 report.fileTransform._flush = report._flush;
 
 //
-// Process the file containing the report and write only the first occurrance
+// Process the file containing the report and write only the first occurance
 // of the headers and all detail lines to the new report file.
 //
 source
