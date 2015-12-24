@@ -16,3 +16,9 @@ This class finds the number ways eight queens can be placed on a chessboard so t
 
 3. **_WeatherStats.java_** - 
 WeatherStats demonstrates how to retrieve and parse data from a website using standard Java libraries without resorting to maintaining that data on the local server. In this case weather data from a monitoring station at Lake Pend Oreille in Northeastern Washington is retrieved from a [website](http://lpo.dt.navy.mil) maintained by the U.S. Navy and used to generate basic statistics. 
+
+4. **_rptstrip.js_** -
+This program reads a text file containing a report strips off page titles, footers, and all column headers
+in the report body except those on the first page of the report. At this point in time rptstrip.js is merely a conceptual model for a grander vision of a program that will allow the user to build a template file from a report and then apply that template to any report file containing the same report to create a CSV file from it.
+
+The motivation for this is that during my career I've encountered many cases where information could easily be generated in report format, but the same was not true for files. This is often true of legacy applications. Being able to easily transform reports into CSV files makes it relatively easy to import information into other applications and data analysis tools.
