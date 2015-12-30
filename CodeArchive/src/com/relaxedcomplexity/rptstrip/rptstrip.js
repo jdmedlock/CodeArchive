@@ -1,6 +1,7 @@
 //******************************************************************************
 //* Program:   rptstrip.js
-//* Description: This program reads a text file containing a report
+//* Description: 
+//*            This program reads a text file containing a report
 //*            strips off page titles, footers, and all column headers
 //*            in the report body except those on the first page of
 //*            the report.
