@@ -36,3 +36,4 @@ My development environment consists of the following components:
 |                     |     Nodeclipse    | Node.js  |
 | Database            |        N/a        | MySQL    |
 | Source Code Control |       EGit        |   N/a    |
+| Task Management     |       Mylyn       |  Mylyn   |
