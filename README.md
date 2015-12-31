@@ -21,10 +21,18 @@ This class finds the number ways eight queens can be placed on a chessboard so t
 WeatherStats demonstrates how to retrieve and parse data from a website using standard Java libraries without resorting to maintaining that data on the local server. In this case weather data from a monitoring station at Lake Pend Oreille in Northeastern Washington is retrieved from a [website](http://lpo.dt.navy.mil) maintained by the U.S. Navy and used to generate basic statistics. 
 
 4. **_rptstrip.js_** -
-This program reads a text file containing a report strips off page titles, footers, and all column headers
-in the report body except those on the first page of the report. At this point in time rptstrip.js is merely a conceptual model for a grander vision of a program that will allow the user to build a template file from a report and then apply that template to any report file containing the same report to create a CSV file from it.
+This program reads a text file containing a report strips off page titles, footers, and all column headers in the report body except those on the first page of the report. At this point in time rptstrip.js is merely a conceptual model for a grander vision of a program that will allow the user to build a template file from a report and then apply that template to any report file containing the same report to create a CSV file from it.
 
 The motivation for this is that during my career I've encountered many cases where information could easily be generated in report format, but the same was not true for files. This is often true of legacy applications. Being able to easily transform reports into CSV files makes it relatively easy to import information into other applications and data analysis tools.
+
+5. **_ClassComposition_** -
+This program compares and contrasts the HAS-A (interfaces) and IS-A (inheritance) types of class composition to provide examples of how two different capabilities of the Java language, namely interfaces and inheritance, can be used to accomplish the same thing.
+
+Class design and composition is a key topic in Java since it directly and significantly impacts
+both the performance and maintainability of the application. The [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle) is an important concept which states
+that "if S is a subtype of T, then objects of type T may be replaced with objects of type S". 
+
+When a class X is derived from a class Y and class X is used out of context in place of class Y this can result in erroneous behavior. For example, if a Square is defined as a subclass of a Rectangle and then used in place of a Rectangle errors will result when computing the dimensions of the object since a Square will impose the restriction that width and height must be the same.
 
 ## Development Environment
 My development environment consists of the following components:
