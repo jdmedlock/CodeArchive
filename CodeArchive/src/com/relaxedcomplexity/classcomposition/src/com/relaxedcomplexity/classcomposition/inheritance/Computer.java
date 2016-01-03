@@ -15,7 +15,9 @@ public class Computer {
   private static ExtStorage extStorage = null;
   private static Model      model = null;
   
-  public Computer() {
+  public Computer(Model model) {
+	this.model = model;
+	
     display = new Display();
     processor = new Processor();
     memory = new Memory();

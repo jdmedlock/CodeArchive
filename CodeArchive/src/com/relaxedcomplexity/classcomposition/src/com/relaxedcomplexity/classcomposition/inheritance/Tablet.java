@@ -4,7 +4,7 @@
 package com.relaxedcomplexity.classcomposition.inheritance;
 
 /**
- * @author jim.medlock
+ * @author Jim Medlock
  *
  */
 public class Tablet extends Computer {
