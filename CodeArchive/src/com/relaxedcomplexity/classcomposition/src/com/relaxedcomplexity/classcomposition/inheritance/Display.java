@@ -12,10 +12,19 @@ package com.relaxedcomplexity.classcomposition.inheritance;
  * @author Jim Medlock
  */
 public class Display implements IDisplay {
-  private static enum  
+  
   private static float screenDiagonal = 0.0f;
   private static int	 pixelWidth = 0;
   private static int	 pixelHeight = 0;
+  
+  /**
+   * Class constructor. This is the default class constructor with no 
+   * parameters. This constructor creates a basic instance of the Display 
+   * object with no class variables initialized.
+   */
+  public Display() {
+    
+  }
   
   /**
    * Class constructor specifying parameters to assign values to the various

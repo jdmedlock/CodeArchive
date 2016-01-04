@@ -4,6 +4,8 @@
 package com.relaxedcomplexity.classcomposition.inheritance;
 
 /**
+ * Brand defines the different manufacturers computers may be acquired from.
+ * 
  * @author Jim Medlock
  *
  */
@@ -17,8 +19,8 @@ public enum Brand {
 	
 	private String	brandName = null;
 	
-	/*
-	 * Constructor: Create a brand and associated brand name
+	/**
+	 * Class constructor to create a brand and associated brand name
 	 * 
 	 * @param brandName Brand name
 	 */
@@ -26,6 +28,11 @@ public enum Brand {
 		this.brandName = brandName;
 	}
 	
+	/**
+	 * Retrieve the brand name for a computer brand
+	 * 
+	 * @return Brand name
+	 */
 	public String getBrandName() {
 		return brandName;
 	}
