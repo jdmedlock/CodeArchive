@@ -28,23 +28,37 @@
  */
 package com.relaxedcomplexity.classcomposition.inheritance;
 
-import com.eclipsesource.json.JsonObject;
-
 /**
+ * ComputerType defines the various types of computers.
+ * 
  * @author Jim Medlock
  *
  */
-public class Smartphone extends Computer {
-
-  /**
-   * Class constructor accepting parameters describing the attributes of
-   * a smartphone computer represented by this class.
-   * 
-   * @param currJsonComputer JSON object describing the smartphone computer
-   */
-  public Smartphone(JsonObject currJsonComputer) {
-    super(currJsonComputer);
-  }
+public enum ComputerType {
+  DESKTOP("Desktop"),
+  LAPTOP("Laptop"),
+  SMARTPHONE("SmartPhone"),
+  TABLET("Tablet");
   
+  private String type = null;
+  
+  /**
+   * Class constructor with parameters specifying the computer type.
+   * 
+   * @param brand
+   * @param modelName
+   */
+  private ComputerType(String type) {
+    this.type = type;
+  }  
+  
+  /**
+   * Retrieve the computer type
+   * 
+   * @return Computer type name
+   */
+  public String getType() {
+    return type;
+  }
 
 }
