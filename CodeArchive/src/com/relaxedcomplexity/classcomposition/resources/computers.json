@@ -1,0 +1,13 @@
+{
+  "computer": {
+    "brand": "Apple",
+    "model": "MacBook Pro",
+    "type": "laptop",
+    "display": {
+      "integrated": true,
+      "diagonal": 15.0,
+      "width": 1440,
+      "height": 900
+    }
+  }
+}

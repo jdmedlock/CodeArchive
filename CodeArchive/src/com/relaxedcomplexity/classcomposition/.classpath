@@ -6,5 +6,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="minimal-json-0.9.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
