@@ -46,15 +46,6 @@ public class Display implements IDisplay {
   private static int	    pixelHeight = 0;
   
   /**
-   * Class constructor. This is the default class constructor with no 
-   * parameters. This constructor creates a basic instance of the Display 
-   * object with no class variables initialized.
-   */
-  public Display() {
-    
-  }
-  
-  /**
    * Class constructor building a new instance from the "display" attributes
    * stored in the JSON object parameter.
    * 
@@ -66,18 +57,18 @@ public class Display implements IDisplay {
     JsonObject currJsonDisplay = currJsonComputer.get("display").asObject();
     boolean integratedValue = currJsonDisplay.getBoolean("integrated", false);
     float diagonalValue = currJsonDisplay.getFloat("diagonal", 0.0f);
-    int widthValue = currJsonDisplay.getInt("width", 0);
-    int heightValue = currJsonDisplay.getInt("height", 0);
+    int widthValue = currJsonDisplay.getInt("reswidth", 0);
+    int heightValue = currJsonDisplay.getInt("resheight", 0);
     setDisplayAttributes(integratedValue, diagonalValue, widthValue, heightValue);
  }
 
   /**
-   * Class constructor specifying parameters to assign values to the various
+   * Helper method accepting parameters used to assign values to the various
    * attributes of the display.
    * 
    * @param screenDiagonal  Diagonal screen length (inches)
-   * @param pixelWidth      Screen width (pixels)
-   * @param pixelHeight     Screen height (pixels)
+   * @param pixelWidth      Screen resolution width (pixels per inch)
+   * @param pixelHeight     Screen resolution height (pixels per inch)
    */
   public void setDisplayAttributes (boolean integrated, float screenDiagonal, 
                                     int pixelWidth, int pixelHeight) {
@@ -98,36 +89,36 @@ public class Display implements IDisplay {
   }
   
   /**
-   * Retrieve the screen width in pixels
+   * Retrieve the screen resolution width in pixels per inch
    * 
-   * @return Screen width in pixels
+   * @return Screen resolution width in pixels per inch
    */
   public static int getPixelWidth() {
     return pixelWidth;
   }
 
   /**
-   * Update the screen width in pixels
+   * Update the screen resolution width in pixels per inch
    * 
-   * @param pixelWidth Screen width in pixels
+   * @param pixelWidth Screen resolution width in pixels per inch
    */
   public static void setPixelWidth(int pixelWidth) {
     Display.pixelWidth = pixelWidth;
   }
 
   /**
-   * Retrieve the screen height in pixels
+   * Retrieve the screen resolution height in pixels per inch
    * 
-   * @return Screen height in pixels
+   * @return Screen resolution height in pixels per inch
    */
   public static int getPixelHeight() {
     return pixelHeight;
   }
 
   /**
-   * Update the screen height in pixels
+   * Update the screen resolution height in pixels per inch
    * 
-   * @param pixelHeight Screen height in pixels
+   * @param pixelHeight Screen resolution height in pixels per inch
    */
   public static void setPixelHeight(int pixelHeight) {
     Display.pixelHeight = pixelHeight;

@@ -36,14 +36,9 @@ import com.eclipsesource.json.JsonObject;
  */
 public class Memory implements IMemory {
   
-  /**
-   * Class constructor. This is the default class constructor with no 
-   * parameters. This constructor creates a basic instance of the Memory 
-   * object with no class variables initialized.
-   */
-  public Memory() {
-    
-  }
+  private static int        installedCapacity = 0;
+  private static int        maxCapacity = 0;
+  private static MemoryType type = null;
   
   /**
    * Class constructor building a new instance from the "memory" attributes
@@ -54,7 +49,102 @@ public class Memory implements IMemory {
   public Memory(JsonObject currJsonComputer) {
     // Retrieve "memory" attributes from the JSON object and add them to the
     // new instance of this object
+    JsonObject currJsonMemory = currJsonComputer.get("memory").asObject();
+    int installedCapacityValue = currJsonMemory.getInt("installedcapacity", 0);
+    int maxCapacityValue = currJsonMemory.getInt("maxcapacity", 0);
+    String typeValue = currJsonMemory.getString("type", null);
+    setMemoryAttributes(installedCapacityValue, maxCapacityValue, typeValue);
+ }  
+
+  /**
+   * Helper method accepting parameters used to assign values to the various
+   * attributes of the memory.
+   * 
+   * @param installedCapacity Installed memory in MB
+   * @param maxCapacity       Maximum memory capacity in MB
+   * @param type              Memory type (e.g. DDR3)
+   */
+  public void setMemoryAttributes (int installedCapacity, int maxCapacity, 
+                                    String type) {
+    if (installedCapacity <= 0) {
+      throw new IllegalArgumentException("installedCapacity not > 0!");
+    }
+    if (maxCapacity <= 0) {
+      throw new IllegalArgumentException("maxCapacity not > 0!");
+    }
+    if (type == null) {
+      throw new IllegalArgumentException("type not specified!");
+    }
     
+    setInstalledCapacity(installedCapacity);
+    setMaxCapacity(maxCapacity);
+    setType(type);
   }
 
+  /**
+   * Retrieve the amount of installed memory in MB
+   * 
+   * @return the installed memory capacity (MB)
+   */
+  public static int getInstalledCapacity() {
+    return installedCapacity;
+  }
+
+  /**
+   * Update the installed memory capacity in MB
+   * 
+   * @param installedCapacity the installed memory capacity (MB) to set
+   */
+  public static void setInstalledCapacity(int installedCapacity) {
+    Memory.installedCapacity = installedCapacity;
+  }
+
+  /**
+   * Retrieve the maximum possible memory capacity in MB.
+   * <p>
+   * The difference between the amount of installed memory and this value is
+   * the amount of memory that could be added to the computer.
+   * 
+   * @return the maximum possible memory capacity (MB)
+   */
+  public static int getMaxCapacity() {
+    return maxCapacity;
+  }
+
+  /**
+   * Update the maximum possible memory capacity in MB.
+   * 
+   * @param maxCapacity the maximum possible memory capacity (MB) to set
+   */
+  public static void setMaxCapacity(int maxCapacity) {
+    Memory.maxCapacity = maxCapacity;
+  }
+
+  /**
+   * Retrieve the type of memory that the device will accept.
+   * 
+   * @return the type of memory
+   */
+  public static String getType() {
+    return type.getType();
+  }
+
+  /**
+   * Update the type of memory the device will accept.
+   * 
+   * @param type the type of memory to set
+   */
+  public static void setType(String type) {
+    for (MemoryType memoryType : MemoryType.values()) {
+      if (memoryType.getType().equalsIgnoreCase(type)) {
+        Memory.type = memoryType;
+        break;
+      }
+    }
+    
+    if (Memory.type == null) {
+      throw new IllegalArgumentException("invalid memory type specified!");
+    }
+  }
+    
 }
