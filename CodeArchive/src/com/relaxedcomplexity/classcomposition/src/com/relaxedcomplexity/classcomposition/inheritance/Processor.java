@@ -29,14 +29,9 @@ import com.eclipsesource.json.JsonObject;
 
 public class Processor implements IProcessor {
   
-  /**
-   * Class constructor. This is the default class constructor with no 
-   * parameters. This constructor creates a basic instance of the Processor 
-   * object with no class variables initialized.
-   */
-  public Processor() {
-    
-  }
+  private static float  clockSpeed = 0.0f;
+  private static String manufacturer = null;
+  private static String model = null;
   
   /**
    * Class constructor building a new instance from the "processor" attributes
@@ -45,9 +40,69 @@ public class Processor implements IProcessor {
    * @param currJsonComputer
    */
   public Processor(JsonObject currJsonComputer) {
-    // Retrieve "processor" attributes from the JSON object and add them to the
-    // new instance of this object
+    JsonObject currJsonProcessor = currJsonComputer.get("processor").asObject();
+    float clockSpeedValue = currJsonProcessor.getFloat("clockspeed", 0);
+    String manufacturerValue = currJsonProcessor.getString("manufacturer", null);
+    String modelValue = currJsonProcessor.getString("model", null);
     
+    setClockSpeed(clockSpeedValue);
+    setManufacturer(manufacturerValue);
+    setModel(modelValue);
+  }  
+
+  
+  /**
+   * @return the clockSpeed
+   */
+  public static float getClockSpeed() {
+    return clockSpeed;
+  }
+
+  /**
+   * @param clockSpeed the clockSpeed to set
+   */
+  public static void setClockSpeed(float clockSpeed) {
+    if (clockSpeed <= 0.0f) {
+      throw new IllegalArgumentException("clockSpeed not > 0!");
+    }
+    
+    Processor.clockSpeed = clockSpeed;
+  }
+
+  /**
+   * @return the manufacturer
+   */
+  public static String getManufacturer() {
+    return manufacturer;
+  }
+
+  /**
+   * @param manufacturer the manufacturer to set
+   */
+  public static void setManufacturer(String manufacturer) {
+    if (manufacturer == null) {
+      throw new IllegalArgumentException("manufacturer not specified!");
+    }
+    
+    Processor.manufacturer = manufacturer;
+  }
+
+  /**
+   * @return the model
+   */
+  public static String getModel() {
+    return model;
+  }
+
+  /**
+   * @param model the model to set
+   */
+  public static void setModel(String model) {
+    if (model == null) {
+      throw new IllegalArgumentException("model not specified!");
+    }
+
+    Processor.model = model;
   }
 
 }

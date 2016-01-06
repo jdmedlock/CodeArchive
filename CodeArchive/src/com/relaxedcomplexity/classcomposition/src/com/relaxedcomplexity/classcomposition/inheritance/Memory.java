@@ -47,39 +47,15 @@ public class Memory implements IMemory {
    * @param currJsonComputer
    */
   public Memory(JsonObject currJsonComputer) {
-    // Retrieve "memory" attributes from the JSON object and add them to the
-    // new instance of this object
     JsonObject currJsonMemory = currJsonComputer.get("memory").asObject();
     int installedCapacityValue = currJsonMemory.getInt("installedcapacity", 0);
     int maxCapacityValue = currJsonMemory.getInt("maxcapacity", 0);
     String typeValue = currJsonMemory.getString("type", null);
-    setMemoryAttributes(installedCapacityValue, maxCapacityValue, typeValue);
- }  
 
-  /**
-   * Helper method accepting parameters used to assign values to the various
-   * attributes of the memory.
-   * 
-   * @param installedCapacity Installed memory in MB
-   * @param maxCapacity       Maximum memory capacity in MB
-   * @param type              Memory type (e.g. DDR3)
-   */
-  public void setMemoryAttributes (int installedCapacity, int maxCapacity, 
-                                    String type) {
-    if (installedCapacity <= 0) {
-      throw new IllegalArgumentException("installedCapacity not > 0!");
-    }
-    if (maxCapacity <= 0) {
-      throw new IllegalArgumentException("maxCapacity not > 0!");
-    }
-    if (type == null) {
-      throw new IllegalArgumentException("type not specified!");
-    }
-    
-    setInstalledCapacity(installedCapacity);
-    setMaxCapacity(maxCapacity);
-    setType(type);
-  }
+    setInstalledCapacity(installedCapacityValue);
+    setMaxCapacity(maxCapacityValue);
+    setType(typeValue);
+ }  
 
   /**
    * Retrieve the amount of installed memory in MB
@@ -96,6 +72,9 @@ public class Memory implements IMemory {
    * @param installedCapacity the installed memory capacity (MB) to set
    */
   public static void setInstalledCapacity(int installedCapacity) {
+    if (installedCapacity <= 0) {
+      throw new IllegalArgumentException("installedCapacity not > 0!");
+    }
     Memory.installedCapacity = installedCapacity;
   }
 
@@ -117,6 +96,9 @@ public class Memory implements IMemory {
    * @param maxCapacity the maximum possible memory capacity (MB) to set
    */
   public static void setMaxCapacity(int maxCapacity) {
+    if (maxCapacity <= 0) {
+      throw new IllegalArgumentException("maxCapacity not > 0!");
+    }
     Memory.maxCapacity = maxCapacity;
   }
 
@@ -135,6 +117,10 @@ public class Memory implements IMemory {
    * @param type the type of memory to set
    */
   public static void setType(String type) {
+    if (type == null) {
+      throw new IllegalArgumentException("type not specified!");
+    }
+
     for (MemoryType memoryType : MemoryType.values()) {
       if (memoryType.getType().equalsIgnoreCase(type)) {
         Memory.type = memoryType;

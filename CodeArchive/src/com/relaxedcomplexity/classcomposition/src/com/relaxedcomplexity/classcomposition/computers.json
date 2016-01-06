@@ -4,6 +4,7 @@
     "model": "MacBook Pro",
     "type": "laptop",
     "display": {"integrated": true, "diagonal": 15.0, "reswidth": 1440, "resheight": 900},
-    "memory": {"installedcapacity": 4096, "maxcapacity": 64768, "type": "DDR3"}
+    "memory": {"installedcapacity": 4096, "maxcapacity": 64768, "type": "DDR3"},
+    "processor": {"clockspeed": 2.2, "manufacturer": "Intel", "model": "Core i7"}
   }
 }

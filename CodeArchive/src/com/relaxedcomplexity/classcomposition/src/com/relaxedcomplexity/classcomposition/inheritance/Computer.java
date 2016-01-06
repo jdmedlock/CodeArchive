@@ -32,6 +32,8 @@ import com.eclipsesource.json.JsonObject;
 
 /**
  * Computer defines the attributes of a particular computer.
+ * <p>
+ * This 
  * 
  * @author Jim Medlock
  *

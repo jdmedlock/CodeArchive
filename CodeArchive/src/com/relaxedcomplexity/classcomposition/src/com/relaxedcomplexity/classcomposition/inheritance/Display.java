@@ -59,35 +59,13 @@ public class Display implements IDisplay {
     float diagonalValue = currJsonDisplay.getFloat("diagonal", 0.0f);
     int widthValue = currJsonDisplay.getInt("reswidth", 0);
     int heightValue = currJsonDisplay.getInt("resheight", 0);
-    setDisplayAttributes(integratedValue, diagonalValue, widthValue, heightValue);
- }
-
-  /**
-   * Helper method accepting parameters used to assign values to the various
-   * attributes of the display.
-   * 
-   * @param screenDiagonal  Diagonal screen length (inches)
-   * @param pixelWidth      Screen resolution width (pixels per inch)
-   * @param pixelHeight     Screen resolution height (pixels per inch)
-   */
-  public void setDisplayAttributes (boolean integrated, float screenDiagonal, 
-                                    int pixelWidth, int pixelHeight) {
-    if (screenDiagonal <= 0) {
-      throw new IllegalArgumentException("screenDiagonal not > 0!");
-    }
-	  if (pixelWidth <= 0) {
-		  throw new IllegalArgumentException("pixelWidth not > 0!");
-	  }
-	  if (pixelHeight <= 0) {
-		  throw new IllegalArgumentException("pixelHeight not > 0!");
-	  }
-	  
-	  Display.setIntegrated(integrated);
-	  Display.setScreenDiagonal(screenDiagonal);
-	  Display.setPixelWidth(pixelWidth);
-	  Display.setPixelHeight(pixelHeight);
+ 
+    setIntegrated(integratedValue);
+    setScreenDiagonal(diagonalValue);
+    setPixelWidth(widthValue);
+    setPixelHeight(heightValue);
   }
-  
+
   /**
    * Retrieve the screen resolution width in pixels per inch
    * 
@@ -103,6 +81,9 @@ public class Display implements IDisplay {
    * @param pixelWidth Screen resolution width in pixels per inch
    */
   public static void setPixelWidth(int pixelWidth) {
+    if (pixelWidth <= 0) {
+      throw new IllegalArgumentException("pixelWidth not > 0!");
+    }
     Display.pixelWidth = pixelWidth;
   }
 
@@ -121,6 +102,9 @@ public class Display implements IDisplay {
    * @param pixelHeight Screen resolution height in pixels per inch
    */
   public static void setPixelHeight(int pixelHeight) {
+    if (pixelHeight <= 0) {
+      throw new IllegalArgumentException("pixelHeight not > 0!");
+    }
     Display.pixelHeight = pixelHeight;
   }
 
@@ -139,6 +123,9 @@ public class Display implements IDisplay {
    * @param screenDiagonal Screen diagonal length (inches)
    */
   public static void setScreenDiagonal(float screenDiagonal) {
+    if (screenDiagonal <= 0) {
+      throw new IllegalArgumentException("screenDiagonal not > 0!");
+    }
     Display.screenDiagonal = screenDiagonal;
   }
 
