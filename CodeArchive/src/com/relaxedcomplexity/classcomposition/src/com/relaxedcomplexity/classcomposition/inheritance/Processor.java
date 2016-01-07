@@ -27,6 +27,13 @@ package com.relaxedcomplexity.classcomposition.inheritance;
 
 import com.eclipsesource.json.JsonObject;
 
+/**
+ * Processor defines the attributes of the CPU installed on a particular
+ * computer.
+ * 
+ * @author Jim Medlock
+ *
+ */
 public class Processor implements IProcessor {
   
   private static float  clockSpeed = 0.0f;
@@ -52,6 +59,8 @@ public class Processor implements IProcessor {
 
   
   /**
+   * Retrieve the processors clock speed (GHz).
+   * 
    * @return the clockSpeed
    */
   public static float getClockSpeed() {
@@ -59,6 +68,8 @@ public class Processor implements IProcessor {
   }
 
   /**
+   * Update the clock speed (GHz) of the processor.
+   * 
    * @param clockSpeed the clockSpeed to set
    */
   public static void setClockSpeed(float clockSpeed) {
@@ -70,14 +81,18 @@ public class Processor implements IProcessor {
   }
 
   /**
-   * @return the manufacturer
+   * Retrieve the manufacturer name of the processor.
+   * 
+   * @return the manufacturer name
    */
   public static String getManufacturer() {
     return manufacturer;
   }
 
   /**
-   * @param manufacturer the manufacturer to set
+   * Update the manufacturer name of the processor.
+   * 
+   * @param manufacturer the manufacturer name to set
    */
   public static void setManufacturer(String manufacturer) {
     if (manufacturer == null) {
@@ -88,14 +103,23 @@ public class Processor implements IProcessor {
   }
 
   /**
+   * Retrieve the model name of the processor. This value combined with the
+   * manufacturer name identifies the type of processor and it's capabilities.
+   * 
    * @return the model
+   * @see #getManufacturer()
    */
   public static String getModel() {
     return model;
   }
 
   /**
+   * Update the model name of the processor. This value should be valid for the
+   * manufacturer name set for the processor.
+   * 
    * @param model the model to set
+   * @see #getManufacturer()
+   * 
    */
   public static void setModel(String model) {
     if (model == null) {

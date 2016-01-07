@@ -31,11 +31,28 @@ package com.relaxedcomplexity.classcomposition.inheritance;
 import com.eclipsesource.json.JsonObject;
 
 /**
- * Computer defines the attributes of a particular computer.
+ * Computer defines the attributes of a particular generic computer. This is 
+ * used to compare and contrast using inheritance vs. composition to implement 
+ * has-a and is-a relationships between objects.
  * <p>
- * This 
+ * This class encapsulates all the information that describes the attributes
+ * and capabilities of a particular computer. This includes:
+ * <ul>
+ * <li>Display
+ * <li>Memory
+ * <li>Processor
+ * <li>Internal & External storage
+ * </ul>
+ * <p>
+ * It is expected that subclasses of Computer will be created to describe 
+ * specific types of computers. For example, Laptop is a subclass of Computer
+ * which defines attributes and methods unique to laptop computers.
  * 
  * @author Jim Medlock
+ * @see Desktop
+ * @see Laptop
+ * @see Smartphone
+ * @see Tablet
  *
  */
 public class Computer {
@@ -72,7 +89,21 @@ public class Computer {
     return jsonAttrs;
   }
 
+  /**
+   * Update the JSON attribute model.
+   * 
+   * @param model JSON attribute model object
+   */
   public static void setModel(JsonObject model) {
     Computer.jsonAttrs = model;
   }
+  
+  /**
+   * Print the attributes of this computer
+   */
+  public void print() {
+    System.out.println("Computer attributes:");
+    System.out.println(memory.toString());
+  }
+  
 }

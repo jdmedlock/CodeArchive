@@ -87,6 +87,11 @@ public class InheritanceDriver {
       computerAttrs.remove("computer").asObject();
       noMembers = computerAttrs.size();
 	  }
+	  
+	  // Print the attributes of the computers 
+	  for(Computer computer : computers ) {
+	    computer.print();
+	  }
   }
 
 }

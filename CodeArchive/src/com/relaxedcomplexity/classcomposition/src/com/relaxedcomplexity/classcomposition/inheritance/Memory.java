@@ -28,9 +28,14 @@
  */
 package com.relaxedcomplexity.classcomposition.inheritance;
 
+import java.util.StringJoiner;
+
 import com.eclipsesource.json.JsonObject;
 
 /**
+ * Memory defines the attributes of the memory (RAM) installed on a particular
+ * computer.
+ * 
  * @author Jim Medlock
  *
  */
@@ -133,4 +138,12 @@ public class Memory implements IMemory {
     }
   }
     
+  @Override
+  public String toString() {
+    StringJoiner sj = new StringJoiner(",", "Memory:[", "]");
+    sj.add("installedCapacity:"+Integer.toString(installedCapacity))
+      .add("maxCapacity:"+Integer.toString(maxCapacity))
+      .add("type:"+getType());
+    return sj.toString();
+  }
 }
