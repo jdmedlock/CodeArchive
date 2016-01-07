@@ -38,6 +38,22 @@ import com.eclipsesource.json.JsonObject.Member;
 import com.eclipsesource.json.JsonValue;
 
 /**
+ * InheritanceDriver controls the execution of the computer inventory 
+ * application using inheritence-based object model. As such, it contains the 
+ * main method that is the entrypoint to this application.
+ * <p>
+ * Using the inheritance-based class model for the computer inventory 
+ * application allows it to be compared and contrasted with the 
+ * composition-based model for the same application. Doing this for an 
+ * application that has the same functionality allows conclusions to be drawn 
+ * regarding the two types of object models.
+ * <p>
+ * the description of the computers in the inventory of available machines is
+ * maintained in the file computers.json. This file is parsed and the attributes
+ * of the individuals computers are extracted into JSON objects and are passed
+ * to the Computer class constructor which uses them to establish values for
+ * the various fields in the instance.
+ * 
  * @author Jim Medlock
  *
  */

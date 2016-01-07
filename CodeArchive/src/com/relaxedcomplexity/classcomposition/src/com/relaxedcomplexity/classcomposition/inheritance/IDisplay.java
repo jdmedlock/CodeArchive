@@ -33,5 +33,13 @@ package com.relaxedcomplexity.classcomposition.inheritance;
  *
  */
 public interface IDisplay {
+  
+  /**
+   * Generate a string containing the attributes of the object. This requires
+   * that the inherited toString() method be overridden by implementors
+   * @return
+   */
+  @Override
+  public String toString();
 
 }

@@ -28,23 +28,23 @@
  */
 package com.relaxedcomplexity.classcomposition.inheritance;
 
+import java.util.StringJoiner;
+
 import com.eclipsesource.json.JsonObject;
 
 /**
+ * ExtStorage defines the attributes of the external storage device attached to
+ * a computer.
+ * 
  * @author Jim Medlock
- *
  */
 public class ExtStorage implements IStorage {
-
   
-  /**
-   * Class constructor. This is the default class constructor with no 
-   * parameters. This constructor creates a basic instance of the ExtStorage 
-   * object with no class variables initialized.
-   */
-  public ExtStorage() {
-    
-  }
+  private String  manufacturer;
+  private String  model;
+  private float   maxCapacity;
+  private float   usableCapacity;
+  private int     rpm;
   
   /**
    * Class constructor building a new instance from the "extstorage" attributes
@@ -53,10 +53,136 @@ public class ExtStorage implements IStorage {
    * @param currJsonComputer
    */
   public ExtStorage(JsonObject currJsonComputer) {
-    // Retrieve "extstorage" attributes from the JSON object and add them to the
-    // new instance of this object
-    
+    JsonObject currJsonExtStorage = currJsonComputer.get("extstorage").asObject();
+    String manufacturerValue = currJsonExtStorage.getString("manufacturer", null);
+    String modelValue = currJsonExtStorage.getString("model", null);
+    float maxCapacityValue = currJsonExtStorage.getFloat("maxcapacity", 0.0f);
+    float usableCapacityValue = currJsonExtStorage.getFloat("usablecapacity", 0.0f);
+    int rpmValue = currJsonExtStorage.getInt("rpm", 0);
+ 
+    setManufacturer(manufacturerValue);
+    setModel(modelValue);
+    setMaxCapacity(maxCapacityValue);
+    setUsableCapacity(usableCapacityValue);
+    setRpm(rpmValue);
   }
-  
-  
+
+  /**
+   * Retrieve the manufacturer name
+   * 
+   * @return the manufacturer name
+   * @see #setManufacturer(String)
+   */
+  public String getManufacturer() {
+    return manufacturer;
+  }
+
+  /**
+   * Update the manufacturer name
+   * 
+   * @param manufacturer the manufacturer name to set
+   * @see #getManufacturer()
+   */
+  public void setManufacturer(String manufacturer) {
+    this.manufacturer = manufacturer;
+  }
+
+  /**
+   * Retrieve the model name
+   * 
+   * @return the model name
+   * @see #setModel(String)
+   */
+  public String getModel() {
+    return model;
+  }
+
+  /**
+   * Update the mode name
+   * 
+   * @param model the model name to set
+   * @see #getModel()
+   */
+  public void setModel(String model) {
+    this.model = model;
+  }
+
+  /**
+   * Retrieve the maximum drive capacity
+   * 
+   * @return the maximum drive capacity (GB)
+   * @see #setMaxCapacity(float)
+   */
+  public float getMaxCapacity() {
+    return maxCapacity;
+  }
+
+  /**
+   * Update the maximum drive capacity (GB)
+   * 
+   * @param maxCapacity the maximum drive capacity (GB) to set
+   * @see #getMaxCapacity()
+   */
+  public void setMaxCapacity(float maxCapacity) {
+    this.maxCapacity = maxCapacity;
+  }
+
+  /**
+   * Retrieve the ussable drive capacity (GB)
+   * 
+   * @return the usable drive capacity (GB)
+   * @see #setUsableCapacity(float)
+   */
+  public float getUsableCapacity() {
+    return usableCapacity;
+  }
+
+  /**
+   * Update the usable drive capacity (GB)
+   * 
+   * @param usableCapacity the usable drive capacity (GB) to set
+   * @see #getUsableCapacity()
+   */
+  public void setUsableCapacity(float usableCapacity) {
+    this.usableCapacity = usableCapacity;
+  }
+
+  /**
+   * Retrieve the drives revolutions per minute (RPM).
+   * <p>
+   * This may be zero if the drive is non-rotating media like a thumbdrive.
+   * 
+   * @return the rpm
+   * @see #setRpm(int)
+   */
+  public int getRpm() {
+    return rpm;
+  }
+
+  /**
+   * Update the drives number of revolutions per minute (RPM).
+   * 
+   * @param rpm the rpm to set
+   * @see #getRpm()
+   */
+  public void setRpm(int rpm) {
+    this.rpm = rpm;
+  }
+
+  /**
+   * Create a string containing the attributes of this object. The attribute 
+   * string generated has the format 
+   * "External Storage: [<attr-name>:<attr-value,...]".
+   */
+  @Override
+  public String toString() {
+    StringJoiner sj = new StringJoiner(", ", "External Storage: [", "]");
+    sj.add("manufacturer: "+getManufacturer())
+      .add("model: "+getModel())
+      .add("maxcapacity: "+Float.toString(getMaxCapacity()))
+      .add("usablecapacity: "+Float.toString(getUsableCapacity()))
+      .add("rpm: "+Integer.toString(getRpm()));
+    return sj.toString();
+  }
+
 }

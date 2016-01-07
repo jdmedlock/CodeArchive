@@ -28,6 +28,8 @@
  */
 package com.relaxedcomplexity.classcomposition.inheritance;
 
+import java.util.StringJoiner;
+
 import com.eclipsesource.json.JsonObject;
 
 /**
@@ -40,8 +42,8 @@ import com.eclipsesource.json.JsonObject;
  */
 public class Display implements IDisplay {
   
-  private boolean  integrated = false;
-  private float    screenDiagonal = 0.0f;
+  private boolean integrated = false;
+  private float   screenDiagonal = 0.0f;
   private int	    pixelWidth = 0;
   private int	    pixelHeight = 0;
   
@@ -70,6 +72,7 @@ public class Display implements IDisplay {
    * Retrieve the screen resolution width in pixels per inch
    * 
    * @return Screen resolution width in pixels per inch
+   * @see #setPixelWidth(int)
    */
   public int getPixelWidth() {
     return pixelWidth;
@@ -79,6 +82,7 @@ public class Display implements IDisplay {
    * Update the screen resolution width in pixels per inch
    * 
    * @param pixelWidth Screen resolution width in pixels per inch
+   * @see #getPixelWidth()
    */
   public void setPixelWidth(int pixelWidth) {
     if (pixelWidth <= 0) {
@@ -91,6 +95,7 @@ public class Display implements IDisplay {
    * Retrieve the screen resolution height in pixels per inch
    * 
    * @return Screen resolution height in pixels per inch
+   * @see #setPixelHeight(int)
    */
   public int getPixelHeight() {
     return pixelHeight;
@@ -100,6 +105,7 @@ public class Display implements IDisplay {
    * Update the screen resolution height in pixels per inch
    * 
    * @param pixelHeight Screen resolution height in pixels per inch
+   * @see #getPixelHeight()
    */
   public void setPixelHeight(int pixelHeight) {
     if (pixelHeight <= 0) {
@@ -112,6 +118,7 @@ public class Display implements IDisplay {
    * Retrieve the diagonal length of the screen in inches
    * 
    * @return Screen diagonal length (inches)
+   * @see #setScreenDiagonal(float)
    */
   public float getScreenDiagonal() {
     return screenDiagonal;
@@ -121,6 +128,7 @@ public class Display implements IDisplay {
    * Update the diagonal dimension of the display.
    * 
    * @param screenDiagonal Screen diagonal length (inches)
+   * @see #getScreenDiagonal()
    */
   public void setScreenDiagonal(float screenDiagonal) {
     if (screenDiagonal <= 0) {
@@ -133,6 +141,7 @@ public class Display implements IDisplay {
    * Retreive the integrated display setting
    * 
    * @return Integrated display setting
+   * @see #setIntegrated(boolean)
    */
   public boolean isIntegrated() {
     return integrated;
@@ -142,9 +151,24 @@ public class Display implements IDisplay {
    * Update the value of the integrated display setting
    * 
    * @param integrated True if builtin display; False if otherwise
+   * @see #isIntegrated()
    */
   public void setIntegrated(boolean integrated) {
     this.integrated = integrated;
+  }
+
+  /**
+   * Create a string containing the attributes of this object. The attribute 
+   * string generated has the format "Display:[<attr-name>:<attr-value,...]".
+   */
+  @Override
+  public String toString() {
+    StringJoiner sj = new StringJoiner(", ", "Display: [", "]");
+    sj.add("integrated: "+Boolean.toString(integrated))
+      .add("screenDiagonal: "+Float.toString(screenDiagonal))
+      .add("pixelWidth: "+Integer.toString(pixelWidth))
+      .add("pixelHeight: "+Integer.toString(pixelHeight));
+    return sj.toString();
   }
 
 }

@@ -73,12 +73,31 @@ public class Computer {
    */
   public Computer(JsonObject currJsonComputer) {
     this.setModel(currJsonComputer);
-	
+    this.name = currJsonComputer.getString("name", null);
+
     display = new Display(currJsonComputer);
     processor = new Processor(currJsonComputer);
     memory = new Memory(currJsonComputer);
     intStorage = new IntStorage(currJsonComputer);
     extStorage = new ExtStorage(currJsonComputer);
+  }
+
+  /**
+   * Retrieve the computer name
+   * 
+   * @return the name of the computer
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Update the computer name
+   * 
+   * @param name the computer name to set
+   */
+  public void setName(String name) {
+    this.name = name;
   }
 
   /**
@@ -103,9 +122,12 @@ public class Computer {
    * Print the attributes of this computer
    */
   public void print() {
-    System.out.println("\nComputer attributes:");
-    System.out.println(processor.toString());
-    System.out.println(memory.toString());
+    System.out.printf("\nComputer name: %s\n",name);
+    System.out.printf("   %s\n",processor.toString());
+    System.out.printf("   %s\n",memory.toString());
+    System.out.printf("   %s\n",display.toString());
+    System.out.printf("   %s\n",intStorage.toString());
+    System.out.printf("   %s\n",extStorage.toString());
   }
   
 }

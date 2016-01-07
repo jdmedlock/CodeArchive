@@ -66,6 +66,7 @@ public class Memory implements IMemory {
    * Retrieve the amount of installed memory in MB
    * 
    * @return the installed memory capacity (MB)
+   * @see #setInstalledCapacity(int)
    */
   public int getInstalledCapacity() {
     return installedCapacity;
@@ -75,6 +76,7 @@ public class Memory implements IMemory {
    * Update the installed memory capacity in MB
    * 
    * @param installedCapacity the installed memory capacity (MB) to set
+   * @see #getInstalledCapacity()
    */
   public void setInstalledCapacity(int installedCapacity) {
     if (installedCapacity <= 0) {
@@ -90,6 +92,7 @@ public class Memory implements IMemory {
    * the amount of memory that could be added to the computer.
    * 
    * @return the maximum possible memory capacity (MB)
+   * @see #setMaxCapacity(int)
    */
   public int getMaxCapacity() {
     return maxCapacity;
@@ -99,6 +102,7 @@ public class Memory implements IMemory {
    * Update the maximum possible memory capacity in MB.
    * 
    * @param maxCapacity the maximum possible memory capacity (MB) to set
+   * @see #getMaxCapacity()
    */
   public void setMaxCapacity(int maxCapacity) {
     if (maxCapacity <= 0) {
@@ -111,6 +115,7 @@ public class Memory implements IMemory {
    * Retrieve the type of memory that the device will accept.
    * 
    * @return the type of memory
+   * @see #setType()
    */
   public String getType() {
     return type.getType();
@@ -120,6 +125,7 @@ public class Memory implements IMemory {
    * Update the type of memory the device will accept.
    * 
    * @param type the type of memory to set
+   * @see #getType()
    */
   public void setType(String type) {
     if (type == null) {
@@ -133,7 +139,7 @@ public class Memory implements IMemory {
       }
     }
     
-    if (type == null) {
+    if (this.type == null) {
       throw new IllegalArgumentException("invalid memory type specified!");
     }
   }
@@ -144,10 +150,10 @@ public class Memory implements IMemory {
    */
   @Override
   public String toString() {
-    StringJoiner sj = new StringJoiner(",", "Memory:[", "]");
-    sj.add("installedCapacity:"+Integer.toString(installedCapacity))
-      .add("maxCapacity:"+Integer.toString(maxCapacity))
-      .add("type:"+getType());
+    StringJoiner sj = new StringJoiner(", ", "Memory: [", "]");
+    sj.add("installedCapacity: "+Integer.toString(installedCapacity))
+      .add("maxCapacity: "+Integer.toString(maxCapacity))
+      .add("type: "+getType());
     return sj.toString();
   }
 }

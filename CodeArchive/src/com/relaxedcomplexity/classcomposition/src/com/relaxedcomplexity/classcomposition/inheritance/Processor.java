@@ -64,6 +64,7 @@ public class Processor implements IProcessor {
    * Retrieve the processors clock speed (GHz).
    * 
    * @return the clockSpeed
+   * @see #setClockSpeed(float)
    */
   public float getClockSpeed() {
     return clockSpeed;
@@ -73,6 +74,7 @@ public class Processor implements IProcessor {
    * Update the clock speed (GHz) of the processor.
    * 
    * @param clockSpeed the clockSpeed to set
+   * @see #getClockSpeed()
    */
   public void setClockSpeed(float clockSpeed) {
     if (clockSpeed <= 0.0f) {
@@ -86,6 +88,7 @@ public class Processor implements IProcessor {
    * Retrieve the manufacturer name of the processor.
    * 
    * @return the manufacturer name
+   * @see #setManufacturer(String)
    */
   public String getManufacturer() {
     return manufacturer;
@@ -95,6 +98,7 @@ public class Processor implements IProcessor {
    * Update the manufacturer name of the processor.
    * 
    * @param manufacturer the manufacturer name to set
+   * @see #getManufacturer()
    */
   public void setManufacturer(String manufacturer) {
     if (manufacturer == null) {
@@ -109,7 +113,7 @@ public class Processor implements IProcessor {
    * manufacturer name identifies the type of processor and it's capabilities.
    * 
    * @return the model
-   * @see #getManufacturer()
+   * @see #setModel()
    */
   public String getModel() {
     return model;
@@ -120,7 +124,7 @@ public class Processor implements IProcessor {
    * manufacturer name set for the processor.
    * 
    * @param model the model to set
-   * @see #getManufacturer()
+   * @see #getModel()
    * 
    */
   public void setModel(String model) {
@@ -136,11 +140,11 @@ public class Processor implements IProcessor {
    * string generated has the format "Processor:[<attr-name>:<attr-value,...]".
    */
   @Override
-  public String toString() {
-    StringJoiner sj = new StringJoiner(",", "Processor:[", "]");
-    sj.add("manufacturer:"+manufacturer)
-      .add("model:"+model)
-      .add("clockSpeed:"+Float.toString(clockSpeed));
+  public String toString() { 
+    StringJoiner sj = new StringJoiner(", ", "Processor: [", "]");
+    sj.add("manufacturer: "+manufacturer)
+      .add("model: "+model)
+      .add("clockSpeed: "+Float.toString(clockSpeed));
     return sj.toString();
   }
 
