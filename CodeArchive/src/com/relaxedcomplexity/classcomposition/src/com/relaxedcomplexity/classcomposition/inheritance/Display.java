@@ -40,10 +40,10 @@ import com.eclipsesource.json.JsonObject;
  */
 public class Display implements IDisplay {
   
-  private static boolean  integrated = false;
-  private static float    screenDiagonal = 0.0f;
-  private static int	    pixelWidth = 0;
-  private static int	    pixelHeight = 0;
+  private boolean  integrated = false;
+  private float    screenDiagonal = 0.0f;
+  private int	    pixelWidth = 0;
+  private int	    pixelHeight = 0;
   
   /**
    * Class constructor building a new instance from the "display" attributes
@@ -71,7 +71,7 @@ public class Display implements IDisplay {
    * 
    * @return Screen resolution width in pixels per inch
    */
-  public static int getPixelWidth() {
+  public int getPixelWidth() {
     return pixelWidth;
   }
 
@@ -80,11 +80,11 @@ public class Display implements IDisplay {
    * 
    * @param pixelWidth Screen resolution width in pixels per inch
    */
-  public static void setPixelWidth(int pixelWidth) {
+  public void setPixelWidth(int pixelWidth) {
     if (pixelWidth <= 0) {
       throw new IllegalArgumentException("pixelWidth not > 0!");
     }
-    Display.pixelWidth = pixelWidth;
+    this.pixelWidth = pixelWidth;
   }
 
   /**
@@ -92,7 +92,7 @@ public class Display implements IDisplay {
    * 
    * @return Screen resolution height in pixels per inch
    */
-  public static int getPixelHeight() {
+  public int getPixelHeight() {
     return pixelHeight;
   }
 
@@ -101,11 +101,11 @@ public class Display implements IDisplay {
    * 
    * @param pixelHeight Screen resolution height in pixels per inch
    */
-  public static void setPixelHeight(int pixelHeight) {
+  public void setPixelHeight(int pixelHeight) {
     if (pixelHeight <= 0) {
       throw new IllegalArgumentException("pixelHeight not > 0!");
     }
-    Display.pixelHeight = pixelHeight;
+    this.pixelHeight = pixelHeight;
   }
 
   /**
@@ -113,7 +113,7 @@ public class Display implements IDisplay {
    * 
    * @return Screen diagonal length (inches)
    */
-  public static float getScreenDiagonal() {
+  public float getScreenDiagonal() {
     return screenDiagonal;
   }
 
@@ -122,11 +122,11 @@ public class Display implements IDisplay {
    * 
    * @param screenDiagonal Screen diagonal length (inches)
    */
-  public static void setScreenDiagonal(float screenDiagonal) {
+  public void setScreenDiagonal(float screenDiagonal) {
     if (screenDiagonal <= 0) {
       throw new IllegalArgumentException("screenDiagonal not > 0!");
     }
-    Display.screenDiagonal = screenDiagonal;
+    this.screenDiagonal = screenDiagonal;
   }
 
   /**
@@ -134,7 +134,7 @@ public class Display implements IDisplay {
    * 
    * @return Integrated display setting
    */
-  public static boolean isIntegrated() {
+  public boolean isIntegrated() {
     return integrated;
   }
 
@@ -143,8 +143,8 @@ public class Display implements IDisplay {
    * 
    * @param integrated True if builtin display; False if otherwise
    */
-  public static void setIntegrated(boolean integrated) {
-    Display.integrated = integrated;
+  public void setIntegrated(boolean integrated) {
+    this.integrated = integrated;
   }
 
 }

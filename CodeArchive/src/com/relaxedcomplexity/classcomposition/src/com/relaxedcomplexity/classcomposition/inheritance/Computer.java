@@ -57,12 +57,13 @@ import com.eclipsesource.json.JsonObject;
  */
 public class Computer {
   
-  private static Display    display = null;
-  private static Processor  processor = null;
-  private static Memory     memory = null;
-  private static IntStorage intStorage = null;
-  private static ExtStorage extStorage = null;
-  private static JsonObject jsonAttrs = null;
+  private String     name = null;
+  private Display    display = null;
+  private Processor  processor = null;
+  private Memory     memory = null;
+  private IntStorage intStorage = null;
+  private ExtStorage extStorage = null;
+  private JsonObject jsonAttrs = null;
   
   /**
    * Class constructor accepting parameters describing the attributes of
@@ -85,7 +86,7 @@ public class Computer {
    * 
    * @return Attributes of this computer
    */
-  public static JsonObject getModel() {
+  public JsonObject getModel() {
     return jsonAttrs;
   }
 
@@ -94,15 +95,16 @@ public class Computer {
    * 
    * @param model JSON attribute model object
    */
-  public static void setModel(JsonObject model) {
-    Computer.jsonAttrs = model;
+  public void setModel(JsonObject model) {
+    jsonAttrs = model;
   }
   
   /**
    * Print the attributes of this computer
    */
   public void print() {
-    System.out.println("Computer attributes:");
+    System.out.println("\nComputer attributes:");
+    System.out.println(processor.toString());
     System.out.println(memory.toString());
   }
   

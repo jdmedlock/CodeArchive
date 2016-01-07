@@ -25,6 +25,8 @@
  *******************************************************************************/
 package com.relaxedcomplexity.classcomposition.inheritance;
 
+import java.util.StringJoiner;
+
 import com.eclipsesource.json.JsonObject;
 
 /**
@@ -36,9 +38,9 @@ import com.eclipsesource.json.JsonObject;
  */
 public class Processor implements IProcessor {
   
-  private static float  clockSpeed = 0.0f;
-  private static String manufacturer = null;
-  private static String model = null;
+  private float  clockSpeed = 0.0f;
+  private String manufacturer = null;
+  private String model = null;
   
   /**
    * Class constructor building a new instance from the "processor" attributes
@@ -63,7 +65,7 @@ public class Processor implements IProcessor {
    * 
    * @return the clockSpeed
    */
-  public static float getClockSpeed() {
+  public float getClockSpeed() {
     return clockSpeed;
   }
 
@@ -72,12 +74,12 @@ public class Processor implements IProcessor {
    * 
    * @param clockSpeed the clockSpeed to set
    */
-  public static void setClockSpeed(float clockSpeed) {
+  public void setClockSpeed(float clockSpeed) {
     if (clockSpeed <= 0.0f) {
       throw new IllegalArgumentException("clockSpeed not > 0!");
     }
     
-    Processor.clockSpeed = clockSpeed;
+    this.clockSpeed = clockSpeed;
   }
 
   /**
@@ -85,7 +87,7 @@ public class Processor implements IProcessor {
    * 
    * @return the manufacturer name
    */
-  public static String getManufacturer() {
+  public String getManufacturer() {
     return manufacturer;
   }
 
@@ -94,12 +96,12 @@ public class Processor implements IProcessor {
    * 
    * @param manufacturer the manufacturer name to set
    */
-  public static void setManufacturer(String manufacturer) {
+  public void setManufacturer(String manufacturer) {
     if (manufacturer == null) {
       throw new IllegalArgumentException("manufacturer not specified!");
     }
     
-    Processor.manufacturer = manufacturer;
+    this.manufacturer = manufacturer;
   }
 
   /**
@@ -109,7 +111,7 @@ public class Processor implements IProcessor {
    * @return the model
    * @see #getManufacturer()
    */
-  public static String getModel() {
+  public String getModel() {
     return model;
   }
 
@@ -121,12 +123,25 @@ public class Processor implements IProcessor {
    * @see #getManufacturer()
    * 
    */
-  public static void setModel(String model) {
+  public void setModel(String model) {
     if (model == null) {
       throw new IllegalArgumentException("model not specified!");
     }
 
-    Processor.model = model;
+    this.model = model;
+  }
+
+  /**
+   * Create a string containing the attributes of this object. The attribute 
+   * string generated has the format "Processor:[<attr-name>:<attr-value,...]".
+   */
+  @Override
+  public String toString() {
+    StringJoiner sj = new StringJoiner(",", "Processor:[", "]");
+    sj.add("manufacturer:"+manufacturer)
+      .add("model:"+model)
+      .add("clockSpeed:"+Float.toString(clockSpeed));
+    return sj.toString();
   }
 
 }

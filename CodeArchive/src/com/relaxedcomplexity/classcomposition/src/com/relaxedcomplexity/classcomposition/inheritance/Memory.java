@@ -41,9 +41,9 @@ import com.eclipsesource.json.JsonObject;
  */
 public class Memory implements IMemory {
   
-  private static int        installedCapacity = 0;
-  private static int        maxCapacity = 0;
-  private static MemoryType type = null;
+  private int        installedCapacity = 0;
+  private int        maxCapacity = 0;
+  private MemoryType type = null;
   
   /**
    * Class constructor building a new instance from the "memory" attributes
@@ -67,7 +67,7 @@ public class Memory implements IMemory {
    * 
    * @return the installed memory capacity (MB)
    */
-  public static int getInstalledCapacity() {
+  public int getInstalledCapacity() {
     return installedCapacity;
   }
 
@@ -76,11 +76,11 @@ public class Memory implements IMemory {
    * 
    * @param installedCapacity the installed memory capacity (MB) to set
    */
-  public static void setInstalledCapacity(int installedCapacity) {
+  public void setInstalledCapacity(int installedCapacity) {
     if (installedCapacity <= 0) {
       throw new IllegalArgumentException("installedCapacity not > 0!");
     }
-    Memory.installedCapacity = installedCapacity;
+    this.installedCapacity = installedCapacity;
   }
 
   /**
@@ -91,7 +91,7 @@ public class Memory implements IMemory {
    * 
    * @return the maximum possible memory capacity (MB)
    */
-  public static int getMaxCapacity() {
+  public int getMaxCapacity() {
     return maxCapacity;
   }
 
@@ -100,11 +100,11 @@ public class Memory implements IMemory {
    * 
    * @param maxCapacity the maximum possible memory capacity (MB) to set
    */
-  public static void setMaxCapacity(int maxCapacity) {
+  public void setMaxCapacity(int maxCapacity) {
     if (maxCapacity <= 0) {
       throw new IllegalArgumentException("maxCapacity not > 0!");
     }
-    Memory.maxCapacity = maxCapacity;
+    this.maxCapacity = maxCapacity;
   }
 
   /**
@@ -112,7 +112,7 @@ public class Memory implements IMemory {
    * 
    * @return the type of memory
    */
-  public static String getType() {
+  public String getType() {
     return type.getType();
   }
 
@@ -121,23 +121,27 @@ public class Memory implements IMemory {
    * 
    * @param type the type of memory to set
    */
-  public static void setType(String type) {
+  public void setType(String type) {
     if (type == null) {
       throw new IllegalArgumentException("type not specified!");
     }
 
     for (MemoryType memoryType : MemoryType.values()) {
       if (memoryType.getType().equalsIgnoreCase(type)) {
-        Memory.type = memoryType;
+        this.type = memoryType;
         break;
       }
     }
     
-    if (Memory.type == null) {
+    if (type == null) {
       throw new IllegalArgumentException("invalid memory type specified!");
     }
   }
     
+  /**
+   * Create a string containing the attributes of this object. The attribute 
+   * string generated has the format "Memory:[<attr-name>:<attr-value,...]".
+   */
   @Override
   public String toString() {
     StringJoiner sj = new StringJoiner(",", "Memory:[", "]");
