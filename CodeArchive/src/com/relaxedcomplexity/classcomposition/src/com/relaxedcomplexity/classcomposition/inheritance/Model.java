@@ -28,6 +28,9 @@
  */
 package com.relaxedcomplexity.classcomposition.inheritance;
 
+import com.relaxedcomplexity.classcomposition.Brand;
+import com.relaxedcomplexity.classcomposition.ComputerType;
+
 /**
  * Model defines both the model and manufacturer of a computer. 
  * 

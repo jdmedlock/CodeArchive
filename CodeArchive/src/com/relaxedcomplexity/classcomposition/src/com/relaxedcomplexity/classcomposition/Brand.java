@@ -26,37 +26,39 @@
 /**
  * 
  */
-package com.relaxedcomplexity.classcomposition.inheritance;
+package com.relaxedcomplexity.classcomposition;
 
 /**
- * ComputerType defines the various types of computers.
+ * Brand defines the different manufacturers computers may be acquired from.
  * 
  * @author Jim Medlock
  *
  */
-public enum MemoryType {
-  DDR1("DDR1"),
-  DDR2("DDR2"),
-  DDR3("DDR3");
-  
-  private String type = null;
-  
-  /**
-   * Class constructor with parameters specifying the memory type.
-   * 
-   * @param type Memory type
-   */
-  private MemoryType(String type) {
-    this.type = type;
-  }  
-  
-  /**
-   * Retrieve the memory type
-   * 
-   * @return Memory type name
-   */
-  public String getType() {
-    return type;
-  }
-
+public enum Brand {
+	ACER("Acer"),
+	APPLE("Apple"),
+	DELL("Dell"),
+	HP("Hewett Packard"),
+	LENOVO("Lenovo"),
+	SONY("Sony");
+	
+	private String	brandName = null;
+	
+	/**
+	 * Class constructor to create a brand and associated brand name
+	 * 
+	 * @param brandName Brand name
+	 */
+	private Brand(String brandName) {
+		this.brandName = brandName;
+	}
+	
+	/**
+	 * Retrieve the brand name for a computer brand
+	 * 
+	 * @return Brand name
+	 */
+	public String getBrandName() {
+		return brandName;
+	}
 }

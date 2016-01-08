@@ -31,6 +31,7 @@ package com.relaxedcomplexity.classcomposition.inheritance;
 import java.util.StringJoiner;
 
 import com.eclipsesource.json.JsonObject;
+import com.relaxedcomplexity.classcomposition.MemoryType;
 
 /**
  * Memory defines the attributes of the memory (RAM) installed on a particular

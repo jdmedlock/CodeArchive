@@ -20,5 +20,29 @@
     "processor": {"clockspeed": 2.2, "manufacturer": "Intel", "model": "Core i7"},
     "extstorage": {"manufacturer": "Seagate", "model": "Backup Plus", "maxcapacity": 1000, "usablecapacity": 900, "rpm": 7200},
     "intstorage": {"manufacturer": "Apple", "model": "N/a", "maxcapacity": 750, "usablecapacity": 650, "rpm": 5400}
+  },
+  "computer": {
+    "name": "MyPhone",
+    "brand": "Apple",
+    "model": "iPhone 6 Plus",
+    "type": "smartphone",
+    "display": {"integrated": true, "diagonal": 5.5, "reswidth": 1920, "resheight": 1080},
+    "memory": {"installedcapacity": 1024, "maxcapacity": 1024, "type": "DDR3"},
+    "processor": {"clockspeed": 1.4, "manufacturer": "Apple", "model": "A8"},
+    "extstorage": {},
+    "intstorage": {"manufacturer": "Apple", "model": "N/a", "maxcapacity": 64, "usablecapacity": 55.4, "rpm": 0}
+  },
+    "computer": {
+    "name": "MyTablet",
+    "brand": "Apple",
+    "model": "iPad3",
+    "type": "tablet",
+    "display": {"integrated": true, "diagonal": 9.7, "reswidth": 1536, "resheight": 2048},
+    "memory": {"installedcapacity": 1024, "maxcapacity": 1024, "type": "DDR3"},
+    "processor": {"clockspeed": 1.4, "manufacturer": "Apple", "model": "A5X"},
+    "extstorage": {},
+    "intstorage": {"manufacturer": "Apple", "model": "N/a", "maxcapacity": 64, "usablecapacity": 55.4, "rpm": 0}
   }
+  
+  
 }

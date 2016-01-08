@@ -26,7 +26,7 @@
 /**
  * 
  */
-package com.relaxedcomplexity.classcomposition.inheritance;
+package com.relaxedcomplexity.classcomposition;
 
 /**
  * ComputerType defines the various types of computers.
@@ -34,28 +34,26 @@ package com.relaxedcomplexity.classcomposition.inheritance;
  * @author Jim Medlock
  *
  */
-public enum ComputerType {
-  DESKTOP("Desktop"),
-  LAPTOP("Laptop"),
-  SMARTPHONE("SmartPhone"),
-  TABLET("Tablet");
+public enum MemoryType {
+  DDR1("DDR1"),
+  DDR2("DDR2"),
+  DDR3("DDR3");
   
   private String type = null;
   
   /**
-   * Class constructor with parameters specifying the computer type.
+   * Class constructor with parameters specifying the memory type.
    * 
-   * @param brand
-   * @param modelName
+   * @param type Memory type
    */
-  private ComputerType(String type) {
+  private MemoryType(String type) {
     this.type = type;
   }  
   
   /**
-   * Retrieve the computer type
+   * Retrieve the memory type
    * 
-   * @return Computer type name
+   * @return Memory type name
    */
   public String getType() {
     return type;
