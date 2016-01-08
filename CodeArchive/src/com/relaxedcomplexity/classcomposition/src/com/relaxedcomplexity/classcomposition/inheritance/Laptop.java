@@ -46,4 +46,8 @@ public class Laptop extends Computer {
     super(currJsonComputer);
   }
   
+  public boolean sleepWakeButtonPress() {
+    return true;
+  }
+  
 }
