@@ -103,10 +103,10 @@ package com.relaxedcomplexity.eightqueens;
  */
 public class EightQueens {
 
-	private static final int		NROWS = 8;
-	private static final int		NCOLS = 8;
-	private static final boolean	UNOCCUPIED = false;
-	private static final boolean	OCCUPIED = true;
+	private static final int		 NROWS = 8;
+	private static final int		 NCOLS = 8;
+	private static final boolean UNOCCUPIED = false;
+	private static final boolean OCCUPIED = true;
 	
 	private static boolean[][]		chessBoard = new boolean[NROWS][NCOLS];
 	
