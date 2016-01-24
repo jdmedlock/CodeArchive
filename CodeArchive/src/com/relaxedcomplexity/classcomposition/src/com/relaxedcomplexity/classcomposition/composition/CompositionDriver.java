@@ -26,7 +26,7 @@
 /**
  * 
  */
-package com.relaxedcomplexity.classcomposition.inheritance;
+package com.relaxedcomplexity.classcomposition.composition;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -39,12 +39,12 @@ import com.eclipsesource.json.JsonValue;
 
 /**
  * CompositionDriver controls the execution of the computer inventory 
- * application using inheritence-based object model. As such, it contains the 
+ * application using composition-based object model. As such, it contains the 
  * main method that is the entrypoint to this application.
  * <p>
- * Using the inheritance-based class model for the computer inventory 
+ * Using the composition-based class model for the computer inventory 
  * application allows it to be compared and contrasted with the 
- * composition-based model for the same application. Doing this for an 
+ * inheritance-based model for the same application. Doing this for an 
  * application that has the same functionality allows conclusions to be drawn 
  * regarding the two types of object models.
  * <p>
@@ -57,7 +57,7 @@ import com.eclipsesource.json.JsonValue;
  * @author Jim Medlock
  *
  */
-public class InheritanceDriver {
+public class CompositionDriver {
   
   private static ArrayList<Computer> computers = new ArrayList<Computer>();
 
@@ -98,7 +98,7 @@ public class InheritanceDriver {
           computers.add(new Tablet(currJsonComputer));          
 	        break;
 	      default:
-	        computers.add(new Computer(currJsonComputer));	        
+	        System.out.println("Invalid computer type: "+ computerType);	        
 	    }
       computerAttrs.remove("computer").asObject();
       noMembers = computerAttrs.size();
