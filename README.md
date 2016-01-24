@@ -23,10 +23,13 @@ This is an example of how to implement the Factory design pattern using Java. Of
 4. **_rptstrip_** -
 This program reads a text file containing a report strips off page titles, footers, and all column headers in the report body except those on the first page of the report. At this point in time rptstrip.js is merely a conceptual model for a grander vision of a program that will allow the user to build a template file from a report and then apply that template to any report file containing the same report to create a CSV file from it. The motivation for this is that during my career I've encountered many cases where information could easily be generated in report format, but the same was not true for files. This is often true of legacy applications. Being able to easily transform reports into CSV files makes it relatively easy to import information into other applications and data analysis tools.
 
-5. **_Sounder_** - 
+5. **_SingletonPatternDemo_** -
+This is an example of how to implement the Singleton design pattern in a thread safe manner.
+
+6. **_Sounder_** - 
 This program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Pressing and releasing the right mouse button starts and stops the sound, moving the mouse up and down adjusts the volume, and moving it left and right adjusts the pitch. Since two discrete "things" must interact, namely mouse and sound, this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
 
-6. **_WeatherStats_** - 
+7. **_WeatherStats_** - 
 WeatherStats demonstrates how to retrieve and parse data from a website using standard Java libraries without resorting to maintaining that data on the local server. In this case weather data from a monitoring station at Lake Pend Oreille in Northeastern Washington is retrieved from a [website](http://lpo.dt.navy.mil) maintained by the U.S. Navy and used to generate basic statistics. 
 
 ## Development Environment
