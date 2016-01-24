@@ -35,11 +35,15 @@ WeatherStats demonstrates how to retrieve and parse data from a website using st
 ## Development Environment
 My development environment consists of the following components:
 
-| Component           | Development (IDE) | Runtime  |
-|---------------------|-------------------|----------|
-| Eclipse             |         X         |   N/a    |
-| Languages           |      Java SE8     | Java SE8 |
-|                     |     Nodeclipse    | Node.js  |
-| Database            |        N/a        | MySQL    |
-| Source Code Control |       EGit        |   N/a    |
-| Task Management     |       Mylyn       |  Mylyn   |
+| Component           | Development (IDE) | Runtime   |
+|---------------------|-------------------|-----------|
+| Eclipse             |   Eclipse Mars    |   N/a     |
+| Languages           |   Java SE8        | Java SE8  |
+|                     |   Nodeclipse      | Node.js   |
+| Deployment          |   Maven           | Maven     |
+| Database            |      N/a          | MySQL     |
+| Frameworks          |      N/a          | AngularJS |
+|                     |      N/a          | Bootstrap |
+|                     |   STS             | Spring    |
+| Source Code Control |   EGit            | Git       |
+| Task Management     |   Mylyn           | Mylyn     |
