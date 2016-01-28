@@ -29,7 +29,10 @@ This is an example of how to implement the Singleton design pattern in a thread 
 6. **_Sounder_** - 
 This program demonstrates how to control devices by controlling the pitch and volume of a sound on the local computer using the mouse. Pressing and releasing the right mouse button starts and stops the sound, moving the mouse up and down adjusts the volume, and moving it left and right adjusts the pitch. Since two discrete "things" must interact, namely mouse and sound, this is an interesting example of how to use design patterns to both simplify the code and make it easily maintainable and extensible.
 
-7. **_WeatherStats_** - 
+7. **_SpringHW_** - 
+SpringHW is a very simple Spring MVC Hello World project. Its goal isn't to demonstrate the features and flexibility of the Spring framework, but to show the simplest possible Spring application stripped to its bare bones to make it easier to see the relationships between the various configuration files, the servlet, and the Spring framework. This was tested using the Tomcat webserver, but it is server agnostic.
+
+8. **_WeatherStats_** - 
 WeatherStats demonstrates how to retrieve and parse data from a website using standard Java libraries without resorting to maintaining that data on the local server. In this case weather data from a monitoring station at Lake Pend Oreille in Northeastern Washington is retrieved from a [website](http://lpo.dt.navy.mil) maintained by the U.S. Navy and used to generate basic statistics. 
 
 ## Development Environment
@@ -44,6 +47,6 @@ My development environment consists of the following components:
 | Database            |      N/a          | MySQL     |
 | Frameworks          |      N/a          | AngularJS |
 |                     |      N/a          | Bootstrap |
-|                     |   STS             | Spring    |
+|                     |   Eclipse         | Spring    |
 | Source Code Control |   EGit            | Git       |
 | Task Management     |   Mylyn           | Mylyn     |
